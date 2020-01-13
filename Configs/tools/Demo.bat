@@ -1,3 +1,4 @@
+REM tabtoy2.9.0.windows_x64
 tabtoy ^
 --mode=v2 ^
 --json_out=config.json ^
