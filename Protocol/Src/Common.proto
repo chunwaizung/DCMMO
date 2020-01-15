@@ -1,0 +1,14 @@
+syntax="proto3";
+package dcgameprotobuf;
+
+enum TxtOp{
+    UNIVERSAL = 0;
+    txtMsg = 1;
+    lua = 2;
+}
+
+message ErrorRes{
+    int32 no = 1;//错误
+    TxtOp opCode = 2;//操作方式
+    string msg = 3;//文本，可以当消息，可以当lua脚本
+}

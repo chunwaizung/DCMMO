@@ -1,0 +1,28 @@
+syntax="proto3";
+package dcgameprotobuf;
+
+/*
+登录的部分走http
+通过token获取角色信息
+*/
+
+message RoleReq {
+    string token = 1;
+}
+
+enum JobType{
+    UNIVERSAL = 0;
+    Saber = 1;
+    Magic = 2;
+}
+
+message RoleInfo{
+    string name = 1;
+    JobType job = 2;
+    int32 level = 3;
+}
+
+message RoleRes {
+    int32 errorNo = 1;
+    repeated RoleInfo infos = 2;
+}
