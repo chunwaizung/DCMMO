@@ -54,5 +54,12 @@ namespace Dcgameprotobuf
 
             return default;
         }
+
+        public static object Parse(byte[] data)
+        {
+            int id;
+            var o = Parse(data, out id);
+            return o;
+        }
     }
 }
