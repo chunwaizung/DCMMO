@@ -31,7 +31,6 @@ for filePath in files:
   # os.system(cmdStr)
   cmdFile.write(cmdStr)
   cmdFile.write('\n')
-cmdFile.write("pause\n")
 cmdFile.close()
 print("generate complete!")
 subprocess.call("generate_complie.bat")

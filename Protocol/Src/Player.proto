@@ -1,11 +1,14 @@
 syntax="proto3";
 package dcgameprotobuf;
 
+//startNo = 1010000
+
 /*
 登录的部分走http
 通过token获取角色信息
 */
 
+//1010001
 message RoleReq {
     string token = 1;
 }
@@ -22,6 +25,7 @@ message RoleInfo{
     int32 level = 3;
 }
 
+//1010002
 message RoleRes {
     int32 errorNo = 1;
     repeated RoleInfo infos = 2;

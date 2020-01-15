@@ -1,12 +1,15 @@
 syntax="proto3";
 package dcgameprotobuf;
 
+//startNo = 1000000
+
 enum TxtOp{
     UNIVERSAL = 0;
     txtMsg = 1;
     lua = 2;
 }
 
+//1000001
 message ErrorRes{
     int32 no = 1;//错误
     TxtOp opCode = 2;//操作方式

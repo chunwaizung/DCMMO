@@ -7,55 +7,54 @@ require("ProtocolConfig")
     
 ]]--
 local template = [[
-using System;
 using Google.Protobuf;
 
 namespace Dcgameprotobuf
 {
-public class DCGameProtocol
-{
-    private static readonly byte[] s_no = new byte[4];
-
-    public static int GetProtoId(byte[] content)
+    public static partial class DCGameProtocol
     {
-        s_no[0] = content[0];
-        s_no[1] = content[1];
-        s_no[2] = content[2];
-        s_no[3] = content[3];
+        public static int GetId<T>(T t) where T : IMessage<T>
+        {
+            int id = 0;
+            switch (typeof(T).Name)
+            {
+%s
+            }
+
+            return id;
+        }
+
+        public static object Parse(byte[] data, out int id)
+        {
+            var proto_id = GetProtoId(data);
+            id = proto_id;
+            var offset = 4;
+            var length = data.Length - offset;
+
+            switch (proto_id)
+            {
+%s
+            }
+
+            return default;
+        }
         
-        if (!BitConverter.IsLittleEndian)
-        {
-            Array.Reverse(s_no);
-        }
-
-        BitConverter.ToInt32(s_no, 0);
-        return 0;
     }
-
-    public static T Parse<T>(byte[] data) where T : IMessage<T>
-    {
-        var proto_id = GetProtoId(data);
-        var offset = 4;
-        var length = data.Length - offset;
-
-        switch (proto_id)
-        {
-            %s
-        }
-
-        return default;
-    }
-}
 }
 ]]
 function GenerateScript()
     -- body
-    local buf = "";
+    local convertBuf = ""
+
+    local parseBuf = ""
     for k,v in pairs(ProtoConfig) do
-        local line = string.format( "case %d: return (T)%s.Descriptor.Parser.ParseFrom(data, offset, length);", k,v)
-        buf = buf..line..'\n'
+        local convertLine = string.format( "case \"%s\": id = %d;break;", v,k)
+        convertBuf = convertBuf..convertLine..'\n'
+
+        local parseLine = string.format( "case %d: return %s.Descriptor.Parser.ParseFrom(data, offset, length);", k,v)
+        parseBuf = parseBuf..parseLine..'\n'
     end
-    return string.format(template, buf)
+    return string.format(template, convertBuf, parseBuf)
 end
 
 function WriteToFile(path, content)

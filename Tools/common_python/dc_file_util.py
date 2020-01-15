@@ -4,11 +4,14 @@ import subprocess, os, sys, shutil
 # 保持目录结构复制满足后缀限定的文件到另一个文件夹
 def copyFileTo(srcDir,dstDir,ext):
     if ext == "" :
-        allFiles = getAllFiles(srcDir)
+      allFiles = getAllFiles(srcDir)
     else:
-        allFiles = getAllFilesWithExt(srcDir,ext)
+      allFiles = getAllFilesWithExt(srcDir,ext)
+
     for aFile in allFiles:
-        shutil.copy2(aFile, getOutPutPath(srcDir, dstDir, aFile))
+      outPath = getOutPutPath(srcDir, dstDir, aFile)
+      print "copy ", aFile, outPath
+      shutil.copy2(aFile, outPath)
 
 # 保持目录结构复制srcDir目录下所有内容到dstDir目录
 def copyTree(srcDir,dstDir):
@@ -16,8 +19,12 @@ def copyTree(srcDir,dstDir):
   for aFile in allFiles:
     shutil.copy2(aFile, getOutPutPath(srcDir, dstDir, aFile))
 
+def convertSplitSymbol(path):
+  return path.replace("\\","/")
+
 # 获取输出路径
 def getOutPutPath(srcDir,dstDir,filePath):
+  print "get out path: ", srcDir, dstDir, filePath
   outputPath = filePath.replace(srcDir, dstDir).replace("\\","/")
   return outputPath
 

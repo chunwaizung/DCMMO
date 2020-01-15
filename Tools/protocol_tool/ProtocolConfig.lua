@@ -1,4 +1,5 @@
 ProtoConfig = {}
-ProtoConfig[1000001] = "Person"
-ProtoConfig[1000002] = "Proto1"
-ProtoConfig[1000003] = "Proto2"
+ProtoConfig[1000001] = "ErrorRes"
+
+ProtoConfig[1010001] = "RoleReq"
+ProtoConfig[1010002] = "RoleRes"

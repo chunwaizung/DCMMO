@@ -1,3 +1,4 @@
 REM lua GenerateGameProto.lua DCGameProtocol.cs
-lua GenerateGameProto.lua C:\projects\Unity\Unity2019StandardExtras\Assets\Blogs\UseProtoBuf\DCGameProtocol.cs
+set dstPath="../../Client/DCMMO_Unity/Assets/DCProto/DCGameProtocol.cs"
+lua GenerateGameProto.lua %dstPath%
 pause
