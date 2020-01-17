@@ -6,7 +6,11 @@ using Dcgameprotobuf;
 
 namespace DC.Net
 {
-    public class NetworkServer : CRes
+    /// <summary>
+    /// 接收客户端
+    /// 开启多线程处理客户端
+    /// </summary>
+    public class NetworkServer : ManualRes
     {
         private TcpListener mTcpListener;
 
@@ -26,44 +30,12 @@ namespace DC.Net
                 }
 
                 var tcpClient = await mTcpListener.AcceptTcpClientAsync();
-                new ClientHandler().Handle(tcpClient);
+                var clientHandler = new ClientHandler();
+                clientHandler.SetServer(this);
+                clientHandler.Handle(tcpClient);
             }
         }
 
     }
-
-    public class ClientHandler
-    {
-        private CircularBuffer mRecvBuf = new CircularBuffer();
-
-        private PacketParser mPacketParser;
-
-        public ClientHandler()
-        {
-            mPacketParser = new PacketParser(mRecvBuf);
-        }
-
-        public async void Handle(TcpClient client)
-        {
-            var stream = client.GetStream();
-            var cnt = await mRecvBuf.WriteAsync(stream);
-            while (cnt > 0)
-            {
-                var suc = mPacketParser.Parse();
-                if (suc)
-                {
-                    var packet = mPacketParser.GetPacket();
-                    var realBuf = new byte[packet.Length];
-                    Array.Copy(packet.Bytes, 0, realBuf, 0, realBuf.Length);
-                }
-
-                cnt = await mRecvBuf.WriteAsync(stream);
-            }
-        }
-
-        public void OnMsg(byte[] buf)
-        {
-            var protoId = DCGameProtocol.GetProtoId(buf);
-        }
-    }
+    
 }

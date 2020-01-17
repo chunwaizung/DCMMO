@@ -5,51 +5,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using Dcgameprotobuf;
 using UnityEngine;
 
 namespace DC.Net
 {
-    public abstract class NormalClient
+    /// <summary>
+    /// 发送byte数组
+    /// 返回packet
+    /// </summary>
+    public class NetworkClient : ManualRes
     {
-        private TcpClient mClient;
-
-        public async void Send(byte[] buf)
-        {
-            var lenBytes = BitConverter.GetBytes(buf.Length);
-            if (!BitConverter.IsLittleEndian)
-            {
-                Array.Reverse(lenBytes);
-            }
-
-            await mClient.GetStream().WriteAsync(lenBytes, 0, 4);
-            await mClient.GetStream().WriteAsync(buf, 0, buf.Length);
-        }
-
-        public async void Receive()
-        {
-            var buf = new byte[1024 * 512];
-
-            var readCnt = await mClient.GetStream().ReadAsync(buf, 0, buf.Length);
-
-        }
-    }
-
-    public class CRes
-    {
-        protected bool mDisposed;
-
-        public virtual void DisposeRes()
-        {
-            mDisposed = true;
-        }
-    }
-
-    public class NetworkClient : CRes
-    {
-        public static readonly int max_send_buf_len = 1024 * 512;
-
-        public static readonly int max_rec_buf_len = 1024 * 512;
-
 //        private NormalClient mClient;
 
         private TcpClient mClient;
@@ -58,21 +24,63 @@ namespace DC.Net
 
         CircularBuffer mRecvBuf = new CircularBuffer();
 
+        private PacketParser mPacketParser;
+
+        private event Action<Packet> mOnRecvListener; 
+
         public void Init(string host, int port)
         {
+            mPacketParser = new PacketParser(mRecvBuf);
         }
 
         public void Send(byte[] buf)
         {
-
+            Send(buf,0,buf.Length);
         }
 
-        public async void StreamToByteBuf(Stream stream, ByteBuf byteBuf)
+        public void Send(byte[] buf, int off, int len)
         {
-            
+            var lenBuf = DCGameProtocol.GetUshortBuf((ushort)len);
+            mSendBuf.Write(lenBuf, 0, lenBuf.Length);
+
+            mSendBuf.Write(buf, off, len);
+
+            StartSend();
         }
 
-        public async void Receive()
+        public void Send(params SendBuf[] bufs)
+        {
+            var len = 0;
+            foreach (var buf in bufs)
+            {
+                len += buf.len;
+            }
+
+            var lenBuf = DCGameProtocol.GetUshortBuf((ushort)len);
+            mSendBuf.Write(lenBuf, 0, lenBuf.Length);
+            foreach (var buf in bufs)
+            {
+                mSendBuf.Write(buf.buf,buf.off,buf.len);
+            }
+
+            StartSend();
+        }
+
+        public async void StartSend()
+        {
+            while (mSendBuf.Length > 0)
+            {
+                var stream = mClient.GetStream();
+                if (!stream.CanWrite)
+                {
+                    return;
+                }
+
+                await mSendBuf.ReadAsync(stream);
+            }
+        }
+
+        public async void StartReceive()
         {
             /*
              tcp 确保收到服务器下发的所有数据
@@ -102,27 +110,49 @@ namespace DC.Net
                     if (cnt == 0)
                     {
                         //SocketError.NetworkReset
-                        //todo send reconnect msg
+                        //todo s send reconnect msg
+                        
                         return;
+                    }
+
+                    var suc = mPacketParser.Parse();
+                    if (suc)
+                    {
+                        var packet = mPacketParser.GetPacket();
+                        if (null != mOnRecvListener)
+                        {
+                            mOnRecvListener(packet);
+                        }
                     }
                 }
             }
             catch (IOException e)
             {
-                
+                DCLog.Err(e.Message);
+                DCLog.Err(e.StackTrace);
             }
             catch (ObjectDisposedException e)
             {
+                DCLog.Err(e.Message);
+                DCLog.Err(e.StackTrace);
             }
             catch (Exception e)
             {
+                DCLog.Err(e.Message);
+                DCLog.Err(e.StackTrace);
             }
-            
         }
 
-        public void AddListener(Action<byte[]> onReceive)
+        public void AddListener(Action<Packet> onReceive)
         {
-
+            mOnRecvListener += onReceive;
         }
+
+        public void RemvListener(Action<Packet> onReceive)
+        {
+            mOnRecvListener -= onReceive;
+        }
+
     }
+
 }

@@ -1,28 +1,29 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using DC.Net;
 using UnityEngine;
 
 namespace DC
 {
-    public class UnityMessageDispatcher : MonoBehaviour
+    public class UnityMsgDispatcherTmpl<T> : MonoBehaviour
     {
-        ConcurrentQueue<byte[]> mMsgQueue = new ConcurrentQueue<byte[]>();
+        protected ConcurrentQueue<T> mMsgQueue = new ConcurrentQueue<T>();
 
-        private event Action<byte[]> mHandler;
+        protected event Action<T> mHandler;
 
-        public void AddListener(Action<byte[]> onMsg)
+        public void AddListener(Action<T> onMsg)
         {
             mHandler += onMsg;
         }
 
-        public void RemoveListener(Action<byte[]> onMsg)
+        public void RemoveListener(Action<T> onMsg)
         {
             if (null == mHandler) return;
 
             mHandler -= onMsg;
         }
 
-        public void OnReceive(byte[] msg)
+        public void OnReceive(T msg)
         {
             mMsgQueue.Enqueue(msg);
         }
@@ -40,6 +41,11 @@ namespace DC
                 }
             }
         }
+    }
+
+    public class UnityMessageDispatcher : UnityMsgDispatcherTmpl<Packet>
+    {
+        
 
     }
 }

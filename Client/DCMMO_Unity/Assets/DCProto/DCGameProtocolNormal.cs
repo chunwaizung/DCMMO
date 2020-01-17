@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Google.Protobuf;
 
 namespace Dcgameprotobuf
@@ -13,11 +15,7 @@ namespace Dcgameprotobuf
                 return new byte[1] { 0 };
             }
 
-            byte[] idByidByte = BitConverter.GetBytes(id);
-            if (!BitConverter.IsLittleEndian)
-            {
-                Array.Reverse(idByidByte);
-            }
+            var idByidByte = GetIntBuf(id);
 
             var objBytes = t.ToByteArray();
             var contentBytes = new byte[4 + objBytes.Length];
@@ -26,40 +24,191 @@ namespace Dcgameprotobuf
             return contentBytes;
         }
 
-        private static readonly byte[] s_no = new byte[4];
-
-        public static int GetProtoId(byte[] content)
+        public static byte[] GetUshortBuf(ushort val)
         {
-            s_no[0] = content[0];
-            s_no[1] = content[1];
-            s_no[2] = content[2];
-            s_no[3] = content[3];
+            var bytes = BitConverter.GetBytes(val);
+            if (!BitConverter.IsLittleEndian)
+            {
+                Array.Reverse(bytes);
+            }
+
+            return bytes;
+        }
+
+        public static byte[] GetIntBuf(int val)
+        {
+            var bytes = BitConverter.GetBytes(val);
+            if (!BitConverter.IsLittleEndian)
+            {
+                Array.Reverse(bytes);
+            }
+
+            return bytes;
+        }
+
+        public static ushort GetUshort(byte[] buf, int offset)
+        {
+            s_buf[0] = buf[offset];
+            s_buf[1] = buf[offset + 1];
 
             if (!BitConverter.IsLittleEndian)
             {
-                Array.Reverse(s_no);
+                Array.Reverse(s_buf, 0, 2);
             }
-
-            BitConverter.ToInt32(s_no, 0);
-            return 0;
+            return BitConverter.ToUInt16(s_buf, 0);
         }
 
-        public static T Parse<T>(byte[] data) where T : IMessage<T>
+        public static ushort GetUshort(byte[] buf)
         {
-            var o = Parse(data);
-            if (o != null)
+            return GetUshort(buf, 0);
+        }
+
+        private static readonly byte[] s_buf = new byte[4];
+        public static int GetInt(byte[] buf, int offset)
+        {
+            s_buf[0] = buf[offset];
+            s_buf[1] = buf[offset + 1];
+            s_buf[2] = buf[offset + 2];
+            s_buf[3] = buf[offset + 3];
+
+            if (!BitConverter.IsLittleEndian)
             {
-                return (T)o;
+                Array.Reverse(s_buf);
             }
 
-            return default;
+            return BitConverter.ToInt32(s_buf, 0);
         }
 
-        public static object Parse(byte[] data)
+        public static int GetInt(byte[] buf)
         {
-            int id;
-            var o = Parse(data, out id);
-            return o;
+            return GetInt(buf, 0);
         }
     }
+}
+
+public enum TokenType
+{
+    word,
+    left,
+}
+
+public class Token
+{
+    public TokenType type;
+    public StringBuilder buf;
+
+    public Token()
+    {
+        buf = new StringBuilder();
+    }
+}
+
+/// <summary>
+/// 读满4个token，如果发现 message Type {组合
+/// 如果第一个token是//id则找到
+/// 否则清空已读的token，重新搜索
+///
+/// 单词 空格 {
+/// </summary>
+public class ProtoSyntax
+{
+    private TokenType state;
+
+    Dictionary<int, string> idToName = new Dictionary<int, string>();
+
+    private int buf_len = 128;
+
+    private List<char> mBuf = new List<char>();
+
+    private List<Token> tokens = new List<Token>();
+
+    Token curToken = new Token();
+
+    public void Process()
+    {
+        var c = Next();
+        tokens.Add(curToken);
+
+        while (c >= char.MinValue)
+        {
+            switch (state)
+            {
+                case TokenType.word:
+                    Process_word(c);
+                    break;
+                case TokenType.left:
+                    Process_left(c);
+                    break;
+            }
+        }
+    }
+
+    private void Process_left(char c)
+    {
+        switch (c)
+        {
+            //新token
+            case '{':
+                curToken = new Token();
+                curToken.buf.Append(c);
+                tokens.Add(curToken);
+                break;
+            //新token
+            case ' ':
+            case '\n':
+                curToken = new Token();
+                tokens.Add(curToken);
+                state = TokenType.word;
+                break;
+            default:
+                curToken = new Token();
+                curToken.buf.Append(c);
+                tokens.Add(curToken);
+                state = TokenType.word;
+                break;
+        }
+    }
+
+    private void Process_word(char c)
+    {
+        switch (c)
+        {
+            //新token
+            case '{':
+                curToken = new Token();
+                curToken.buf.Append(c);
+                tokens.Add(curToken);
+                state = TokenType.left;
+                break;
+            //新token
+            case ' ':
+            case '\n':
+                curToken = new Token();
+                tokens.Add(curToken);
+                break;
+            //加到word
+            default:
+                curToken.buf.Append(c);
+                break;
+        }
+    }
+
+    private void TryGetIdAndName()
+    {
+        var count = tokens.Count;
+        if (count > 4)
+        {
+            var t1 = tokens[count - 4];
+            var t2 = tokens[count - 3];
+            var t3 = tokens[count - 2];
+            var t4 = tokens[count - 1];
+
+        }
+    }
+
+    public char Next()
+    {
+        return 'c';
+    }
+
 }

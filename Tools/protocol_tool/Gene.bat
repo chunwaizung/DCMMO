@@ -1,4 +1,8 @@
-REM lua GenerateGameProto.lua DCGameProtocol.cs
+lua GenerateLuaConfig.lua "../../Protocol/src"
+
 set dstPath="../../Client/DCMMO_Unity/Assets/DCProto/DCGameProtocol.cs"
 lua GenerateGameProto.lua %dstPath%
+
+set dstPath="../../Client/DCMMO_Unity/Assets/DCProto/DCProtocolIds.cs"
+lua GenerateProtocolIds.lua %dstPath%
 pause

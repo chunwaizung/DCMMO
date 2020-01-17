@@ -1,4 +1,6 @@
 require("ProtocolConfig")
+require("dc_file_util")
+
 -- 遍历table使用模板生成代码
 --[[
     io
@@ -6,17 +8,17 @@ require("ProtocolConfig")
     string
     
 ]]--
-local template = [[
+local DCGameProtocolTempl = [[
 using Google.Protobuf;
 
 namespace Dcgameprotobuf
 {
     public static partial class DCGameProtocol
     {
-        public static int GetId<T>(T t) where T : IMessage<T>
+        public static int GetId(IMessage t)
         {
             int id = 0;
-            switch (typeof(T).Name)
+            switch (t.GetType().Name)
             {
 %s
             }
@@ -24,13 +26,8 @@ namespace Dcgameprotobuf
             return id;
         }
 
-        public static object Parse(byte[] data, out int id)
+        public static object Parse(int proto_id, byte[] data, int offset, int length)
         {
-            var proto_id = GetProtoId(data);
-            id = proto_id;
-            var offset = 4;
-            var length = data.Length - offset;
-
             switch (proto_id)
             {
 %s
@@ -42,7 +39,7 @@ namespace Dcgameprotobuf
     }
 }
 ]]
-function GenerateScript()
+function GenerateDCGameProtocolScript()
     -- body
     local convertBuf = ""
 
@@ -54,15 +51,9 @@ function GenerateScript()
         local parseLine = string.format( "case %d: return %s.Descriptor.Parser.ParseFrom(data, offset, length);", k,v)
         parseBuf = parseBuf..parseLine..'\n'
     end
-    return string.format(template, convertBuf, parseBuf)
-end
-
-function WriteToFile(path, content)
-    -- body
-    scriptFile = io.open(path,"w")
-    scriptFile:write(content)
-    scriptFile:close()
+    return string.format(DCGameProtocolTempl, convertBuf, parseBuf)
 end
 
 print("write to "..arg[1])
-WriteToFile(arg[1], GenerateScript())
+
+WriteToFile(arg[1], GenerateDCGameProtocolScript())
