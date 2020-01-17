@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using DC;
 using DC.Net;
+using Dcgameprotobuf;
 using UnityEngine;
 
 namespace DCMMO
@@ -31,9 +32,9 @@ namespace DCMMO
             client.Send(Encoding.UTF8.GetBytes(mSendStr));
         }
 
-        void OnReceive(byte[] buf)
+        void OnReceive(Packet packet)
         {
-            DCLog.LogEx("from server: ",Encoding.UTF8.GetString(buf));
+            DCLog.LogEx("from server: ",Encoding.UTF8.GetString(packet.Bytes, 0, packet.Length));
         }
     }
 }
