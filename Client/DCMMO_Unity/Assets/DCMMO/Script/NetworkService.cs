@@ -28,7 +28,7 @@ namespace DC
 
         Dictionary<int, ReqRecord> mIdToRecord = new Dictionary<int, ReqRecord>();
 
-        private NetworkClient mClient;
+        private NetChannel _mChannel;
 
         private UnityMessageDispatcher mUnityMsgDispatcher;
 
@@ -37,7 +37,7 @@ namespace DC
         public void Init()
         {
             mUnityMsgDispatcher.AddListener(OnReceive);
-            mClient.AddListener(mUnityMsgDispatcher.OnReceive);
+            _mChannel.AddListener(mUnityMsgDispatcher.OnReceive);
 
             //start heart beat
         }
@@ -107,7 +107,7 @@ namespace DC
                 AddToHandler(id, callback, mIdToOnceHandler);
             }
 
-            mClient.Send(SendBuf.From(DCGameProtocol.GetIntBuf(id)), SendBuf.From(content));
+            _mChannel.Send(SendBuf.From(DCGameProtocol.GetIntBuf(id)), SendBuf.From(content));
         }
 
         public void Send(IMessage req, Action<int, ProtoPacket> callback)

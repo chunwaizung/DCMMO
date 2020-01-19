@@ -16,12 +16,18 @@ namespace DC.Net
 
         public void Init(string host, int port)
         {
+            DCLog.Log("server start ....");
+
             mTcpListener = new TcpListener(IPAddress.Parse(host), port);
+            mTcpListener.Server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            mTcpListener.Server.NoDelay = true;
             mTcpListener.Start();
         }
 
         public async void Start()
         {
+            DCLog.Log("server start accept ....");
+
             while (true)
             {
                 if (mDisposed)
@@ -34,6 +40,11 @@ namespace DC.Net
                 clientHandler.SetServer(this);
                 clientHandler.Handle(tcpClient);
             }
+        }
+
+        public void Close()
+        {
+            mTcpListener.Stop();
         }
 
     }

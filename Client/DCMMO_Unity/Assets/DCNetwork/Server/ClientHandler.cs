@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Sockets;
+using System.Text;
 using Dcgameprotobuf;
 
 namespace DC.Net
@@ -9,19 +10,17 @@ namespace DC.Net
     /// </summary>
     public class ClientHandler
     {
-        private CircularBuffer mRecvBuf = new CircularBuffer();
-
-        private PacketParser mPacketParser;
-
         private NetworkServer mServer;
 
         private string mUserToken;
 
         private string mRoleToken;
 
+        private NetChannel mChannel;
+
         public ClientHandler()
         {
-            mPacketParser = new PacketParser(mRecvBuf);
+            mChannel = new NetChannel();
         }
 
         public void SetServer(NetworkServer svr)
@@ -29,33 +28,24 @@ namespace DC.Net
             mServer = svr;
         }
 
-        public async void Handle(TcpClient client)
+        public void Handle(TcpClient client)
         {
-            var stream = client.GetStream();
-            var cnt = await mRecvBuf.WriteAsync(stream);
-            while (cnt > 0)
-            {
-                var suc = mPacketParser.Parse();
-                if (suc)
-                {
-                    var packet = mPacketParser.GetPacket();
-                    var realBuf = new byte[packet.Length];
-                    Array.Copy(packet.Bytes, 0, realBuf, 0, realBuf.Length);
-                    //len + protoId + body
-                    var protoPacket = ProtoPacket.FromRecvBuf(realBuf);
-                    if (DCProtocolIds.RoleReq == protoPacket.protoId)
-                    {
+            DCLog.Log("connect a client ...");
+            mChannel.Init(client);
+            mChannel.AddListener(OnMsg);
 
-                    }
-                }
-
-                cnt = await mRecvBuf.WriteAsync(stream);
-            }
+            mChannel.StartReceive();
         }
 
-        public void OnMsg(byte[] buf)
+        public void OnMsg(Packet packet)
         {
-            var protoId = DCGameProtocol.GetInt(buf);
+            //首次连接第一个协议必须是user token
+
+            //echo to client
+            mChannel.Send(
+                SendBuf.From(Encoding.UTF8.GetBytes("echo ")),
+                SendBuf.From(packet.Bytes,0,packet.Length));
+
         }
     }
 }

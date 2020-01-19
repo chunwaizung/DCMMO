@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using System.Text;
 using DC;
 using DC.Net;
@@ -10,31 +11,48 @@ namespace DCMMO
 {
     public class GameMain : MonoBehaviour
     {
-        NetworkClient client;
+        NetChannel mChannel;
 
-        NetworkServer server;
+        NetworkServer mServer;
 
         public string mSendStr;
 
         void Awake()
         {
-            server = new NetworkServer();
-            server.Init("127.0.0.1", 10998);
-            server.Start();
+            mServer = new NetworkServer();
+            mServer.Init("127.0.0.1", 10998);
+            mServer.Start();
 
-            client = new NetworkClient();
-            client.Init("127.0.0.1", 10999);
-            client.AddListener(OnReceive);
+            ConnectServer();
         }
 
-        void OnSend()
+        public async void ConnectServer()
         {
-            client.Send(Encoding.UTF8.GetBytes(mSendStr));
+            TcpClient client = new TcpClient();
+            mChannel = new NetChannel();
+
+            await client.ConnectAsync("127.0.0.1", 10998);
+            mChannel.Init(client);
+            mChannel.AddListener(OnReceive);
+        }
+
+        public void OnSend()
+        {
+            mChannel.Send(Encoding.UTF8.GetBytes(mSendStr));
         }
 
         void OnReceive(Packet packet)
         {
             DCLog.LogEx("from server: ",Encoding.UTF8.GetString(packet.Bytes, 0, packet.Length));
         }
+
+        void Destroy()
+        {
+            DCLog.Log("end main");
+            mChannel.Close();
+            mServer.Close();
+        }
+
     }
+
 }

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
-using System.Threading.Tasks;
 using Dcgameprotobuf;
-using UnityEngine;
 
 namespace DC.Net
 {
@@ -14,7 +9,7 @@ namespace DC.Net
     /// 发送byte数组
     /// 返回packet
     /// </summary>
-    public class NetworkClient : ManualRes
+    public class NetChannel : ManualRes
     {
 //        private NormalClient mClient;
 
@@ -28,9 +23,9 @@ namespace DC.Net
 
         private event Action<Packet> mOnRecvListener; 
 
-        public void Init(string host, int port)
+        public void Init(TcpClient client)
         {
-            mPacketParser = new PacketParser(mRecvBuf);
+            mClient = client;
         }
 
         public void Send(byte[] buf)
@@ -50,6 +45,8 @@ namespace DC.Net
 
         public void Send(params SendBuf[] bufs)
         {
+            if (bufs.Length == 0) return;
+
             var len = 0;
             foreach (var buf in bufs)
             {
@@ -153,6 +150,10 @@ namespace DC.Net
             mOnRecvListener -= onReceive;
         }
 
+        public void Close()
+        {
+            mClient.Close();
+        }
     }
 
 }

@@ -1,10 +1,17 @@
-﻿namespace DC.Net
+﻿using Dcgameprotobuf;
+
+namespace DC.Net
 {
     public struct SendBuf
     {
         public int off;
         public int len;
         public byte[] buf;
+
+        public static SendBuf From(int val)
+        {
+            return From(DCGameProtocol.GetIntBuf(val));
+        }
 
         public static SendBuf From(byte[] buf)
         {
