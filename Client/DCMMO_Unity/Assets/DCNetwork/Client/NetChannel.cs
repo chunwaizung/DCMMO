@@ -26,6 +26,7 @@ namespace DC.Net
         public void Init(TcpClient client)
         {
             mClient = client;
+            mPacketParser = new PacketParser(mRecvBuf);
         }
 
         public void Send(byte[] buf)
