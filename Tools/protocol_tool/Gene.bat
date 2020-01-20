@@ -1,5 +1,3 @@
-lua GenerateLuaConfig.lua "../../Protocol/src"
-
 set dstPath="../../Client/DCMMO_Unity/Assets/DCProto/DCGameProtocol.cs"
 lua GenerateGameProto.lua %dstPath%
 

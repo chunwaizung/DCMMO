@@ -1,3 +1,3 @@
-set dstSrcDir="../../Client/DCMMO_Unity/Assets/DCProto/ProtoSrc"
+set dstSrcDir="../../Client/DCMMO_Unity/Assets/DCMMO/DCProto/ProtoSrc"
 python SyncToProject.py csharp %dstSrcDir%
 pause
