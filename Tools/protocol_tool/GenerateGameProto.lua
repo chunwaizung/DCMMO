@@ -1,6 +1,12 @@
 require("ProtocolConfig")
 require("dc_file_util")
 
+--[[
+引用相对路径下其它模块的方式
+package.path = package.path..';..\\?.lua'
+require("protocol_tool.dc_file_util")
+]]--
+
 -- 遍历table使用模板生成代码
 --[[
     io

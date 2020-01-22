@@ -1,59 +1,62 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 using System.Text;
 using DC;
 using DC.Net;
-using Dcgameprotobuf;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DCMMO
 {
-    public class GameMain : MonoBehaviour
+    public class GameMain : GamePlayBehaviour
     {
-        NetChannel mChannel;
-
-        NetworkServer mServer;
-
-        public string mSendStr;
+        private SystemManager mSysManager;
 
         void Awake()
         {
-            mServer = new NetworkServer();
-            mServer.Init("127.0.0.1", 10998);
-            mServer.Start();
+            mSysManager = new SystemManager();
 
-            ConnectServer();
+            mSysManager.Awake();
         }
 
-        public async void ConnectServer()
+        public void OnEnable()
         {
-            TcpClient client = new TcpClient();
-            mChannel = new NetChannel();
-
-            await client.ConnectAsync("127.0.0.1", 10998);
-            mChannel.Init(client);
-            mChannel.AddListener(OnReceive);
-            mChannel.StartReceive();
+            mSysManager.OnEnable();
         }
 
-        public void OnSend()
+        public void Start()
         {
-            mChannel.Send(Encoding.UTF8.GetBytes(mSendStr));
+            mSysManager.Start();
+
+            var id = 100001;
+            var mapCfg = MapCfgMgr.Instance.GetMapConfigByID(id);
+            if (null != mapCfg)
+            {
+                SceneManager.LoadScene(System.IO.Path.GetFileNameWithoutExtension(mapCfg.AssetPath), LoadSceneMode.Additive);
+            }
+            else
+            {
+                DCLog.Err("can not load level with id : {0}", id);
+            }
         }
 
-        void OnReceive(Packet packet)
+        public void OnApplicationPause()
         {
-            DCLog.LogEx("from server: ",Encoding.UTF8.GetString(packet.Bytes, 0, packet.Length));
+            mSysManager.OnApplicationPause();
         }
 
-        void OnDestroy()
+        public void OnApplicationQuit()
         {
-            DCLog.Log("end main");
-            mChannel.DisposeRes();
-            mChannel.Close();
-            mServer.DisposeRes();
-            mServer.Close();
+            mSysManager.OnApplicationQuit();
+        }
+
+        public void OnDisable()
+        {
+            mSysManager.OnDisable();
+        }
+
+        public void OnDestroy()
+        {
+            mSysManager.OnDestroy();
         }
 
     }

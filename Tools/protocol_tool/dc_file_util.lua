@@ -1,6 +1,11 @@
 function WriteToFile(path, content)
     -- body
-    scriptFile = io.open(path,"w")
+    local scriptFile = io.open(path,"w")
+    if scriptFile == nil
+    then
+      print("error path: ", path)
+      return
+    end
     scriptFile:write(content)
     scriptFile:close()
 end

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-import subprocess, os, sys
+import sys
+sys.path.append("../common_python")
+
+import subprocess, os
 import dc_file_util
 # from ..common_python import dc_file_util
 # from DCFileUtil import *

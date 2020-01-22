@@ -1,6 +1,15 @@
 # -*- coding: utf-8 -*-
 import subprocess, os, sys, shutil
 
+def writeToFile(path,content):
+  dir = os.path.dirname(path)
+  if not os.path.exists(dir):
+    os.mkdir(dir)
+
+  f = open(path,"w")
+  f.write(content)
+  f.close()
+
 # 保持目录结构复制满足后缀限定的文件到另一个文件夹
 def copyFileTo(srcDir,dstDir,ext):
     if ext == "" :
@@ -10,22 +19,21 @@ def copyFileTo(srcDir,dstDir,ext):
 
     for aFile in allFiles:
       outPath = getOutPutPath(srcDir, dstDir, aFile)
-      print "copy ", aFile, outPath
       shutil.copy2(aFile, outPath)
 
 # 保持目录结构复制srcDir目录下所有内容到dstDir目录
 def copyTree(srcDir,dstDir):
   allFiles = getAllFiles(srcDir)
   for aFile in allFiles:
-    shutil.copy2(aFile, getOutPutPath(srcDir, dstDir, aFile))
+    dstPath = getOutPutPath(srcDir, dstDir, aFile)
+    shutil.copy2(aFile, dstPath)
 
 def convertSplitSymbol(path):
   return path.replace("\\","/")
 
 # 获取输出路径
 def getOutPutPath(srcDir,dstDir,filePath):
-  print "get out path: ", srcDir, dstDir, filePath
-  outputPath = filePath.replace(srcDir, dstDir).replace("\\","/")
+  outputPath = filePath.replace(srcDir, dstDir, 1).replace("\\","/")
   return outputPath
 
 # 获取输出目录

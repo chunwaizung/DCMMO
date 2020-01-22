@@ -28,7 +28,7 @@
 			"_parent": {
 				"$ref": "AAAAAAFF+h6SjaM2Hec="
 			},
-			"name": "Flowchart1",
+			"name": "ExcelToBinBasedProto",
 			"ownedElements": [
 				{
 					"_type": "FCFlowchartDiagram",
@@ -36,7 +36,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFvmPrUFelpXl8="
 					},
-					"name": "FlowchartDiagram1",
+					"name": "ExcelToBinBasedProto",
 					"ownedViews": [
 						{
 							"_type": "FCDataView",
@@ -591,6 +591,194 @@
 							}
 						}
 					]
+				}
+			]
+		},
+		{
+			"_type": "FCFlowchart",
+			"_id": "AAAAAAFvxle9x9fBVvI=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "GameMain",
+			"ownedElements": [
+				{
+					"_type": "FCFlowchartDiagram",
+					"_id": "AAAAAAFvxle9yNfChKo=",
+					"_parent": {
+						"$ref": "AAAAAAFvxle9x9fBVvI="
+					},
+					"name": "GameMain",
+					"ownedViews": [
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAFvxlhoPdfLmWk=",
+							"_parent": {
+								"$ref": "AAAAAAFvxle9yNfChKo="
+							},
+							"model": {
+								"$ref": "AAAAAAFvxlhoPdfJVGg="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFvxlhoPdfMZm0=",
+									"_parent": {
+										"$ref": "AAAAAAFvxlhoPdfLmWk="
+									},
+									"font": "Arial;13;0",
+									"left": 1346,
+									"top": 922,
+									"width": 78.75537109375,
+									"height": 13,
+									"text": "LoginAppSvr",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 1336,
+							"top": 912,
+							"width": 98.75537109375,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAFvxlhoPdfMZm0="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAFvxlh5aNfUDxo=",
+							"_parent": {
+								"$ref": "AAAAAAFvxle9yNfChKo="
+							},
+							"model": {
+								"$ref": "AAAAAAFvxlh5aNfS370="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFvxlh5aNfVkAM=",
+									"_parent": {
+										"$ref": "AAAAAAFvxlh5aNfUDxo="
+									},
+									"font": "Arial;13;0",
+									"left": 1538,
+									"top": 938,
+									"width": 86.708984375,
+									"height": 13,
+									"text": "LoginGameSvr",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 1528,
+							"top": 928,
+							"width": 106.708984375,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAFvxlh5aNfVkAM="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAFvxlj7g9ffAvc=",
+							"_parent": {
+								"$ref": "AAAAAAFvxle9yNfChKo="
+							},
+							"model": {
+								"$ref": "AAAAAAFvxlj7f9fdl3Y="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFvxlj7g9fg/Ec=",
+									"_parent": {
+										"$ref": "AAAAAAFvxlj7g9ffAvc="
+									},
+									"font": "Arial;13;0",
+									"left": 1954,
+									"top": 1026,
+									"width": 59.998046875,
+									"height": 13,
+									"text": "LoadLevel",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 1944,
+							"top": 1016,
+							"width": 79.998046875,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAFvxlj7g9fg/Ec="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAFvxlmlUtfowO4=",
+							"_parent": {
+								"$ref": "AAAAAAFvxle9yNfChKo="
+							},
+							"model": {
+								"$ref": "AAAAAAFvxlmlTdfm1pg="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFvxlmlUtfpJwI=",
+									"_parent": {
+										"$ref": "AAAAAAFvxlmlUtfowO4="
+									},
+									"font": "Arial;13;0",
+									"left": 1746,
+									"top": 914,
+									"width": 71.51904296875,
+									"height": 39,
+									"text": "GSvr Contorl Level",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 1736,
+							"top": 904,
+							"width": 91.51904296875,
+							"height": 59,
+							"nameLabel": {
+								"$ref": "AAAAAAFvxlmlUtfpJwI="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAFvxlhoPdfJVGg=",
+					"_parent": {
+						"$ref": "AAAAAAFvxle9x9fBVvI="
+					},
+					"name": "LoginAppSvr"
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAFvxlh5aNfS370=",
+					"_parent": {
+						"$ref": "AAAAAAFvxle9x9fBVvI="
+					},
+					"name": "LoginGameSvr"
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAFvxlj7f9fdl3Y=",
+					"_parent": {
+						"$ref": "AAAAAAFvxle9x9fBVvI="
+					},
+					"name": "LoadLevel"
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAFvxlmlTdfm1pg=",
+					"_parent": {
+						"$ref": "AAAAAAFvxle9x9fBVvI="
+					},
+					"name": "GSvr Contorl Level"
 				}
 			]
 		}
