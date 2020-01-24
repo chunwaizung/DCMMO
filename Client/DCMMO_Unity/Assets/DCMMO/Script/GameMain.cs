@@ -1,19 +1,30 @@
-﻿using System.Net.Sockets;
-using System.Text;
-using DC;
-using DC.Net;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 
-namespace DCMMO
+namespace DC
 {
     public class GameMain : GamePlayBehaviour
     {
+        private static GameMain _Instance;
+
+        public static GameMain Instance => _Instance;
+
         private SystemManager mSysManager;
+
+        private UnityMsgDispatcher mUnityMsgDispatcher;
+
+        public UnityMsgDispatcher UnityMsgDispatcher => mUnityMsgDispatcher;
 
         void Awake()
         {
-            mSysManager = new SystemManager();
+            _Instance = this;
+
+            mUnityMsgDispatcher = gameObject.AddComponent<UnityMsgDispatcher>();
+
+            var dcTimer = DCTimer.Instance;
+
+            mSysManager = SystemManager.Instance;
+
+            mUnityMsgDispatcher = new UnityMsgDispatcher();
 
             mSysManager.Awake();
         }
@@ -37,6 +48,13 @@ namespace DCMMO
             {
                 DCLog.Err("can not load level with id : {0}", id);
             }
+
+            DCCoroutine.Instance.StartCoroutine(GameServerDataMgr.Instance.ReqSvrData(OnSvrData));
+        }
+
+        void OnSvrData()
+        {
+            MsgSys.Send(GEvt.get_svr_list_suc);
         }
 
         public void OnApplicationPause()
@@ -57,6 +75,8 @@ namespace DCMMO
         public void OnDestroy()
         {
             mSysManager.OnDestroy();
+
+            _Instance = null;
         }
 
     }

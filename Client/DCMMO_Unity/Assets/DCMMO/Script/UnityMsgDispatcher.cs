@@ -9,6 +9,8 @@ namespace DC
     {
         protected ConcurrentQueue<T> mMsgQueue = new ConcurrentQueue<T>();
 
+        protected ConcurrentQueue<Action> mActions = new ConcurrentQueue<Action>();
+
         protected event Action<T> mHandler;
 
         public void AddListener(Action<T> onMsg)
@@ -28,24 +30,35 @@ namespace DC
             mMsgQueue.Enqueue(msg);
         }
 
+        public void PostAction(Action action)
+        {
+            mActions.Enqueue(action);
+        }
+
         void Update()
         {
             while (!mMsgQueue.IsEmpty)
             {
                 if (mMsgQueue.TryDequeue(out var result))
                 {
-                    if (null != mHandler)
-                    {
-                        mHandler(result);
-                    }
+                    mHandler?.Invoke(result);
                 }
             }
+
+            while (!mActions.IsEmpty)
+            {
+                if (mActions.TryDequeue(out var action))
+                {
+                    action?.Invoke();
+                }
+            }
+
         }
+
     }
 
-    public class UnityMessageDispatcher : UnityMsgDispatcherTmpl<Packet>
+    public class UnityMsgDispatcher : UnityMsgDispatcherTmpl<Packet>
     {
         
-
     }
 }

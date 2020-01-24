@@ -627,8 +627,8 @@
 										"$ref": "AAAAAAFvxlhoPdfLmWk="
 									},
 									"font": "Arial;13;0",
-									"left": 1346,
-									"top": 922,
+									"left": 1274,
+									"top": 914,
 									"width": 78.75537109375,
 									"height": 13,
 									"text": "LoginAppSvr",
@@ -636,8 +636,8 @@
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 1336,
-							"top": 912,
+							"left": 1264,
+							"top": 904,
 							"width": 98.75537109375,
 							"height": 33,
 							"nameLabel": {
@@ -661,8 +661,8 @@
 										"$ref": "AAAAAAFvxlh5aNfUDxo="
 									},
 									"font": "Arial;13;0",
-									"left": 1538,
-									"top": 938,
+									"left": 1458,
+									"top": 1002,
 									"width": 86.708984375,
 									"height": 13,
 									"text": "LoginGameSvr",
@@ -670,8 +670,8 @@
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 1528,
-							"top": 928,
+							"left": 1448,
+							"top": 992,
 							"width": 106.708984375,
 							"height": 33,
 							"nameLabel": {
@@ -695,8 +695,8 @@
 										"$ref": "AAAAAAFvxlj7g9ffAvc="
 									},
 									"font": "Arial;13;0",
-									"left": 1954,
-									"top": 1026,
+									"left": 1674,
+									"top": 1218,
 									"width": 59.998046875,
 									"height": 13,
 									"text": "LoadLevel",
@@ -704,8 +704,8 @@
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 1944,
-							"top": 1016,
+							"left": 1664,
+							"top": 1208,
 							"width": 79.998046875,
 							"height": 33,
 							"nameLabel": {
@@ -729,21 +729,123 @@
 										"$ref": "AAAAAAFvxlmlUtfowO4="
 									},
 									"font": "Arial;13;0",
-									"left": 1746,
-									"top": 914,
-									"width": 71.51904296875,
-									"height": 39,
+									"left": 1442,
+									"top": 1218,
+									"width": 141,
+									"height": 13,
 									"text": "GSvr Contorl Level",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 1736,
-							"top": 904,
-							"width": 91.51904296875,
-							"height": 59,
+							"left": 1432,
+							"top": 1208,
+							"width": 161,
+							"height": 33,
 							"nameLabel": {
 								"$ref": "AAAAAAFvxlmlUtfpJwI="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAFv1/NoQ9f4NDg=",
+							"_parent": {
+								"$ref": "AAAAAAFvxle9yNfChKo="
+							},
+							"model": {
+								"$ref": "AAAAAAFv1/NoP9f2s90="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFv1/NoQ9f581w=",
+									"_parent": {
+										"$ref": "AAAAAAFv1/NoQ9f4NDg="
+									},
+									"font": "Arial;13;0",
+									"left": 1442,
+									"top": 914,
+									"width": 133,
+									"height": 13,
+									"text": "Load GSvr List",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 1432,
+							"top": 904,
+							"width": 153,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAFv1/NoQ9f581w="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAFv1/PzLNgGBgk=",
+							"_parent": {
+								"$ref": "AAAAAAFvxle9yNfChKo="
+							},
+							"model": {
+								"$ref": "AAAAAAFv1/PzLNgEonE="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFv1/PzLdgHho4=",
+									"_parent": {
+										"$ref": "AAAAAAFv1/PzLNgGBgk="
+									},
+									"font": "Arial;13;0",
+									"left": 1466,
+									"top": 1074,
+									"width": 72.26806640625,
+									"height": 13,
+									"text": "ReqRoleInfo",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 1456,
+							"top": 1064,
+							"width": 92.26806640625,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAFv1/PzLdgHho4="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAFv1/RCK9gRUJo=",
+							"_parent": {
+								"$ref": "AAAAAAFvxle9yNfChKo="
+							},
+							"model": {
+								"$ref": "AAAAAAFv1/RCJ9gP/g8="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFv1/RCK9gS6BU=",
+									"_parent": {
+										"$ref": "AAAAAAFv1/RCK9gRUJo="
+									},
+									"font": "Arial;13;0",
+									"left": 1466,
+									"top": 1154,
+									"width": 100.18505859375,
+									"height": 13,
+									"text": "EnterGameWorld",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 1456,
+							"top": 1144,
+							"width": 120.18505859375,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAFv1/RCK9gS6BU="
 							}
 						}
 					]
@@ -779,6 +881,30 @@
 						"$ref": "AAAAAAFvxle9x9fBVvI="
 					},
 					"name": "GSvr Contorl Level"
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAFv1/NoP9f2s90=",
+					"_parent": {
+						"$ref": "AAAAAAFvxle9x9fBVvI="
+					},
+					"name": "Load GSvr List"
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAFv1/PzLNgEonE=",
+					"_parent": {
+						"$ref": "AAAAAAFvxle9x9fBVvI="
+					},
+					"name": "ReqRoleInfo"
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAFv1/RCJ9gP/g8=",
+					"_parent": {
+						"$ref": "AAAAAAFvxle9x9fBVvI="
+					},
+					"name": "EnterGameWorld"
 				}
 			]
 		}

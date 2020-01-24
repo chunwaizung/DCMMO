@@ -2,6 +2,8 @@
 {
     public abstract class BaseSys
     {
+        public SysBox SysBoxP => SysBox.Instance;
+
         public virtual void Awake()
         {
         }

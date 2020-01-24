@@ -42,6 +42,16 @@ namespace DC
 
         public void Awake()
         {
+#if UNITY_EDITOR
+            //this must be added as first element
+            AddSys(new DCLocalServer());
+#endif
+
+            var networkService = new NetworkService();
+            networkService.ClientMode = true;
+            networkService.SetUnityMsgDispatcher(SysBox.Instance.GameMainP.UnityMsgDispatcher);
+            
+            AddSys(networkService);
             AddSys(new ActorSys());
             AddSys(new LevelSys());
 

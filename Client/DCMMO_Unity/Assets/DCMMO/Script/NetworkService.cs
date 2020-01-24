@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using DC.Net;
 using Dcgameprotobuf;
 using Google.Protobuf;
-using UnityEngine;
 
 namespace DC
 {
@@ -18,7 +17,7 @@ namespace DC
     /// 发送Message
     /// 返回ProtoPacket
     /// </summary>
-    public class NetworkService
+    public class NetworkService : BaseSys
     {
         public float TimeOutDuration = 10;
 
@@ -28,18 +27,45 @@ namespace DC
 
         Dictionary<int, ReqRecord> mIdToRecord = new Dictionary<int, ReqRecord>();
 
-        private NetChannel _mChannel;
+        private NetChannel mChannel;
 
-        private UnityMessageDispatcher mUnityMsgDispatcher;
+        private UnityMsgDispatcher mUnityMsgDispatcher;
+
+        public bool ClientMode { get; set; }
+
+        public void SetUnityMsgDispatcher(UnityMsgDispatcher dispatcher)
+        {
+            mUnityMsgDispatcher = dispatcher;
+            mUnityMsgDispatcher.AddListener(OnReceive);
+        }
 
         //todo add timer to check if req is time out
 
-        public void Init()
+        public override void Awake()
         {
-            mUnityMsgDispatcher.AddListener(OnReceive);
-            _mChannel.AddListener(mUnityMsgDispatcher.OnReceive);
+        }
 
-            //start heart beat
+        private void DisconnectPreviousSvr()
+        {
+
+        }
+
+        public async void Connect(ServerConfig svrCfg, Action callback)
+        {
+            DisconnectPreviousSvr();
+
+            TcpClient client = new TcpClient();
+            mChannel = new NetChannel();
+            mChannel.AddListener(mUnityMsgDispatcher.OnReceive);
+
+            await client.ConnectAsync(svrCfg.host, svrCfg.port);
+
+            mChannel.Init(client);
+
+
+            //todo start heart beat
+
+            callback?.Invoke();
         }
 
         public void AddHandler(int id, Action<int, object> callback)
@@ -89,6 +115,12 @@ namespace DC
 
         private void Send(int id, byte[] content, Action<int, ProtoPacket> callback)
         {
+            if (ClientMode)
+            {
+                SysBoxP.LocalServerP.Handle(id, content, callback);
+                return;
+            }
+
             //todo check network
 
             //previous req is override, notify error
@@ -107,7 +139,7 @@ namespace DC
                 AddToHandler(id, callback, mIdToOnceHandler);
             }
 
-            _mChannel.Send(SendBuf.From(DCGameProtocol.GetIntBuf(id)), SendBuf.From(content));
+            mChannel.Send(SendBuf.From(DCGameProtocol.GetIntBuf(id)), SendBuf.From(content));
         }
 
         public void Send(IMessage req, Action<int, ProtoPacket> callback)
@@ -141,17 +173,6 @@ namespace DC
                     delegateObj.DynamicInvoke(id, packet);
                 }
             }
-        }
-    }
-
-    public class NetworkReqResTest
-    {
-        private NetworkService mNetworkService;
-
-        public void ReqRole()
-        {
-            var req = new RoleReq();
-            mNetworkService.Send(req, null);
         }
     }
 

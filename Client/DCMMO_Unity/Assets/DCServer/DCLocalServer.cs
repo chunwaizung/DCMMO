@@ -1,18 +1,36 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Dcgameprotobuf;
 using UnityEngine;
 
-public class DCLocalServer : MonoBehaviour
+namespace DC
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// 本地虚拟服务器
+    /// </summary>
+    public class DCLocalServer : BaseSys
     {
-        
+        public DCLocalServer Instance => SystemManager.Instance.GetSys<DCLocalServer>();
+
+        private Queue<ClientReq> mReqQueue = new Queue<ClientReq>();
+
+        public void Handle(int id, byte[] content, Action<int, ProtoPacket> callback)
+        {
+            switch (id)
+            {
+                case DCProtocolIds.RoleReq:
+                    break;
+                case DCProtocolIds.LoginSvrReq:
+                    break;
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    struct ClientReq
     {
-        
+        public int id;
+        public byte[] content;
+        public Action<int, ProtoPacket> callback;
     }
 }
