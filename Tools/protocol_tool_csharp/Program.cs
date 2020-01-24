@@ -11,7 +11,6 @@ namespace DC
             // {
             //     Console.WriteLine(arg);
             // }
-            
             new ProtoSyntax().ProcessDir(args[0],args[1]);
         }
     }

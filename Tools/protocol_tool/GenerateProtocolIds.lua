@@ -15,7 +15,14 @@ function GeneDCProtocolIds(templ)
     -- body
     local buf = ""
     for k,v in pairs(ProtoConfig) do
-        local line = string.format( "public const int %s = %d;", v,k)
+        local name = v
+        local id = k
+        local comment = ProtoConfigComment[id]
+        local line = string.format( "public const int %s = %d;", name, id)
+        if comment ~= nil
+        then
+          line = line..comment
+        end
         buf = buf..line..'\n'
     end
     return string.format( templ,buf)

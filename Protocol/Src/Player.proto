@@ -8,6 +8,7 @@ package dcgameprotobuf;
 通过token获取角色信息
 */
 
+//请求角色列表
 //1010001
 message RoleReq {
     string userToken = 1;
@@ -32,7 +33,7 @@ message RoleRes {
     repeated RoleInfo infos = 2;
 }
 
-//登录游戏服务器发送获得的roleToken用来定位角色
+//登录游戏服务器发送获得的roleToken用来定位当前登录的角色
 //1010003
 message LoginSvrReq{
     string roleToken = 1;
