@@ -31,8 +31,6 @@ namespace DC
 
         private UnityMsgDispatcher mUnityMsgDispatcher;
 
-        public bool ClientMode { get; set; }
-
         public void SetUnityMsgDispatcher(UnityMsgDispatcher dispatcher)
         {
             mUnityMsgDispatcher = dispatcher;
@@ -115,12 +113,6 @@ namespace DC
 
         private void Send(int id, byte[] content, Action<int, ProtoPacket> callback)
         {
-            if (ClientMode)
-            {
-                SysBoxP.LocalServerP.Handle(id, content, callback);
-                return;
-            }
-
             //todo check network
 
             //previous req is override, notify error

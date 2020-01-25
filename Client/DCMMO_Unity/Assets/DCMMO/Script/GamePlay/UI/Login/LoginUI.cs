@@ -29,10 +29,7 @@ namespace DC
                     Close();
                     MsgSys.Send(GEvt.connect_gsvr_suc);
 
-                    var roleReq = new RoleReq();
-                    roleReq.UserToken = UserDataMgr.Instance.UserToken;
-
-                    SysBoxP.NetworkServiceP.Send(roleReq, (id, rst) =>
+                    PlayerNet.Instance.ReqRoleList(PlayerDataMgr.Instance.UserToken, (id, protoPkt) =>
                     {
                         UiSys.ShowUi<SelectRoleUI>();
                     });

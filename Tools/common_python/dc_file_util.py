@@ -26,6 +26,9 @@ def copyTree(srcDir,dstDir):
   allFiles = getAllFiles(srcDir)
   for aFile in allFiles:
     dstPath = getOutPutPath(srcDir, dstDir, aFile)
+    dir = os.path.dirname(dstPath)
+    if not os.path.exists(dir):
+      os.mkdir(dir)
     shutil.copy2(aFile, dstPath)
 
 def convertSplitSymbol(path):

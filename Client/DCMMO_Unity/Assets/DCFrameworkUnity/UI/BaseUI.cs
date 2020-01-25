@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace DC.UI
 {
@@ -8,6 +9,8 @@ namespace DC.UI
         List<int> mTypes = new List<int>();
 
         List<Delegate> mDelegates = new List<Delegate>();
+
+        public GameObject gameObject;
 
         protected void AddSmartListener(int type, Action action)
         {

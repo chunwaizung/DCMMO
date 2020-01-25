@@ -2,7 +2,7 @@
 
 namespace DC
 {
-    public class GameMain : GamePlayBehaviour
+    public class GameMain : UnityGamePlayBehaviour
     {
         private static GameMain _Instance;
 

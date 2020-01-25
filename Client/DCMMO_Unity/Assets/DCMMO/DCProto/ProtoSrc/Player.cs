@@ -55,6 +55,7 @@ namespace Dcgameprotobuf {
 
   #region Messages
   /// <summary>
+  ///请求角色列表
   ///1010001
   /// </summary>
   public sealed partial class RoleReq : pb::IMessage<RoleReq> {
@@ -552,7 +553,7 @@ namespace Dcgameprotobuf {
   }
 
   /// <summary>
-  ///登录游戏服务器发送获得的roleToken用来定位角色
+  ///登录游戏服务器发送获得的roleToken用来定位当前登录的角色
   ///1010003
   /// </summary>
   public sealed partial class LoginSvrReq : pb::IMessage<LoginSvrReq> {

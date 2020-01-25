@@ -1,5 +1,5 @@
-set dstBinDir="../../Client/DCMMO_Unity/Assets/DCMMO/DCConfig/bin"
-python ../common_python/SyncToProject.py bin %dstBinDir%
+set dstBinDir="../../Client/DCMMO_Unity/Assets/DCMMO/DCConfig/cfgbin"
+python ../common_python/SyncToProject.py cfgbin %dstBinDir%
 
 set dstSrcDir="../../Client/DCMMO_Unity/Assets/DCMMO/DCConfig/src"
 python ../common_python/SyncToProject.py csharp %dstSrcDir%
