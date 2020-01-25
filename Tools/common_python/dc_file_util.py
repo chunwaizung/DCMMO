@@ -2,9 +2,9 @@
 import subprocess, os, sys, shutil
 
 def writeToFile(path,content):
-  dir = os.path.dirname(path)
-  if not os.path.exists(dir):
-    os.mkdir(dir)
+  dirName = os.path.dirname(path)
+  if not os.path.exists(dirName):
+    os.makedirs(dirName)
 
   f = open(path,"w")
   f.write(content)
@@ -26,9 +26,11 @@ def copyTree(srcDir,dstDir):
   allFiles = getAllFiles(srcDir)
   for aFile in allFiles:
     dstPath = getOutPutPath(srcDir, dstDir, aFile)
-    dir = os.path.dirname(dstPath)
-    if not os.path.exists(dir):
-      os.mkdir(dir)
+    
+    dirName = os.path.dirname(dstPath)
+    if not os.path.exists(dirName):
+      os.makedirs(dirName)
+      
     shutil.copy2(aFile, dstPath)
 
 def convertSplitSymbol(path):
