@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Text;
+using Dcgameprotobuf;
 
 namespace DC.Net
 {
@@ -9,11 +10,11 @@ namespace DC.Net
     /// </summary>
     public class ClientHandler
     {
-        private NetworkServer mServer;
+        public NetworkServer Server;
 
-        private string mUserToken;
+        public string UserToken;
 
-        private string mRoleToken;
+        public string RoleToken;
 
         private NetChannel mChannel;
 
@@ -24,7 +25,7 @@ namespace DC.Net
 
         public void SetServer(NetworkServer svr)
         {
-            mServer = svr;
+            Server = svr;
         }
 
         public void Handle(TcpClient client)
@@ -40,11 +41,17 @@ namespace DC.Net
         {
             //首次连接第一个协议必须是user token
 
+            var protoPacket = ProtoPacket.FromRecvBuf(packet.Bytes, 0, packet.Length);
+            var id = protoPacket.protoId;
+            ReqDispatcher.Instance.Dispatch(this, id, protoPacket);
+        }
+
+        private void TestEcho(Packet packet)
+        {
             //echo to client
             mChannel.Send(
                 SendBuf.From(Encoding.UTF8.GetBytes("echo ")),
-                SendBuf.From(packet.Bytes,0,packet.Length));
-
+                SendBuf.From(packet.Bytes, 0, packet.Length));
         }
     }
 }

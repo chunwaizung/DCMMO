@@ -34,7 +34,7 @@ namespace DC.Net
 
                 var tcpClient = await mTcpListener.AcceptTcpClientAsync();
                 var clientHandler = new ClientHandler();
-                clientHandler.SetServer(this);
+                clientHandler.Server = this;
                 clientHandler.Handle(tcpClient);
             }
         }
