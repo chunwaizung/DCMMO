@@ -2,6 +2,10 @@
 {
     public class ActorDataMgr : Singleton<ActorDataMgr>
     {
-        
+
+        public Actor CreateActor(ActorType type)
+        {
+
+        }
     }
 }

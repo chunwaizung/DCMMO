@@ -38,3 +38,9 @@ message RoleRes {
 message LoginSvrReq{
     string roleToken = 1;
 }
+
+//添加角色
+//1010004
+message AddRoleReq{
+  JobType job = 1;
+}

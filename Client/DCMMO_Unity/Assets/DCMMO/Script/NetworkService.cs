@@ -41,6 +41,7 @@ namespace DC
 
         public override void Awake()
         {
+
         }
 
         private void DisconnectPreviousSvr()

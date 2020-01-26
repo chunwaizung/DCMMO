@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceBuilder : MonoBehaviour
+namespace DC
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ResourceBuilder
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace DC
 {
-    public class NpcActor : Actor
+    public class PetActor : Actor
     {
         
     }
