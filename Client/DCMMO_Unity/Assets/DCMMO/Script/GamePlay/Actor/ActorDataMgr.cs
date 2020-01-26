@@ -5,7 +5,7 @@
 
         public Actor CreateActor(ActorType type)
         {
-
+            return null;
         }
     }
 }
