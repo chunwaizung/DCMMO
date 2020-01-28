@@ -20,6 +20,11 @@ namespace DC
             foreach (var handlerClsType in types)
             {
                 var instance = Activator.CreateInstance(handlerClsType);
+                if (instance is BaseReqHandler baseReqHandler)
+                {
+                    baseReqHandler.OnInit();
+                }
+
                 var methodInfos = handlerClsType.GetMethods();
                 foreach (var methodInfo in methodInfos)
                 {
@@ -36,7 +41,7 @@ namespace DC
         {
             if (mIdToDelegates.TryGetValue(id, out var handler))
             {
-                handler.DynamicInvoke(id, packet);
+                handler.DynamicInvoke(clientHandler, id, packet);
             }
         }
 

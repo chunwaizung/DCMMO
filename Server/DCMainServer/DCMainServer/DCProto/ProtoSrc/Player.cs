@@ -25,20 +25,25 @@ namespace Dcgameprotobuf {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CgxQbGF5ZXIucHJvdG8SDmRjZ2FtZXByb3RvYnVmIhwKB1JvbGVSZXESEQoJ",
-            "dXNlclRva2VuGAEgASgJImAKCFJvbGVJbmZvEgwKBG5hbWUYASABKAkSJAoD",
+            "dXNlclRva2VuGAEgASgJIl0KCFJvbGVJbmZvEgwKBG5hbWUYASABKAkSJAoD",
             "am9iGAIgASgOMhcuZGNnYW1lcHJvdG9idWYuSm9iVHlwZRINCgVsZXZlbBgD",
-            "IAEoBRIRCglyb2xlVG9rZW4YBCABKAkiQwoHUm9sZVJlcxIPCgdlcnJvck5v",
-            "GAEgASgFEicKBWluZm9zGAIgAygLMhguZGNnYW1lcHJvdG9idWYuUm9sZUlu",
-            "Zm8iIAoLTG9naW5TdnJSZXESEQoJcm9sZVRva2VuGAEgASgJKi4KB0pvYlR5",
-            "cGUSDQoJVU5JVkVSU0FMEAASCQoFU2FiZXIQARIJCgVNYWdpYxACYgZwcm90",
-            "bzM="));
+            "IAEoBRIOCgZyb2xlSWQYBCABKAUiQwoHUm9sZVJlcxIPCgdlcnJvck5vGAEg",
+            "ASgFEicKBWluZm9zGAIgAygLMhguZGNnYW1lcHJvdG9idWYuUm9sZUluZm8i",
+            "HQoLTG9naW5TdnJSZXESDgoGcm9sZUlkGAEgASgFIhwKC0xvZ2luU3ZyUmVz",
+            "Eg0KBWVycm9yGAEgASgIIjIKCkFkZFJvbGVSZXESJAoDam9iGAEgASgOMhcu",
+            "ZGNnYW1lcHJvdG9idWYuSm9iVHlwZSIbCgpBZGRSb2xlUmVzEg0KBWVycm9y",
+            "GAEgASgIKi4KB0pvYlR5cGUSDQoJVU5JVkVSU0FMEAASCQoFU2FiZXIQARIJ",
+            "CgVNYWdpYxACYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Dcgameprotobuf.JobType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.RoleReq), global::Dcgameprotobuf.RoleReq.Parser, new[]{ "UserToken" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.RoleInfo), global::Dcgameprotobuf.RoleInfo.Parser, new[]{ "Name", "Job", "Level", "RoleToken" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.RoleInfo), global::Dcgameprotobuf.RoleInfo.Parser, new[]{ "Name", "Job", "Level", "RoleId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.RoleRes), global::Dcgameprotobuf.RoleRes.Parser, new[]{ "ErrorNo", "Infos" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.LoginSvrReq), global::Dcgameprotobuf.LoginSvrReq.Parser, new[]{ "RoleToken" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.LoginSvrReq), global::Dcgameprotobuf.LoginSvrReq.Parser, new[]{ "RoleId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.LoginSvrRes), global::Dcgameprotobuf.LoginSvrRes.Parser, new[]{ "Error" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.AddRoleReq), global::Dcgameprotobuf.AddRoleReq.Parser, new[]{ "Job" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.AddRoleRes), global::Dcgameprotobuf.AddRoleRes.Parser, new[]{ "Error" }, null, null, null, null)
           }));
     }
     #endregion
@@ -215,7 +220,7 @@ namespace Dcgameprotobuf {
       name_ = other.name_;
       job_ = other.job_;
       level_ = other.level_;
-      roleToken_ = other.roleToken_;
+      roleId_ = other.roleId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -257,14 +262,14 @@ namespace Dcgameprotobuf {
       }
     }
 
-    /// <summary>Field number for the "roleToken" field.</summary>
-    public const int RoleTokenFieldNumber = 4;
-    private string roleToken_ = "";
+    /// <summary>Field number for the "roleId" field.</summary>
+    public const int RoleIdFieldNumber = 4;
+    private int roleId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string RoleToken {
-      get { return roleToken_; }
+    public int RoleId {
+      get { return roleId_; }
       set {
-        roleToken_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        roleId_ = value;
       }
     }
 
@@ -284,7 +289,7 @@ namespace Dcgameprotobuf {
       if (Name != other.Name) return false;
       if (Job != other.Job) return false;
       if (Level != other.Level) return false;
-      if (RoleToken != other.RoleToken) return false;
+      if (RoleId != other.RoleId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -294,7 +299,7 @@ namespace Dcgameprotobuf {
       if (Name.Length != 0) hash ^= Name.GetHashCode();
       if (Job != global::Dcgameprotobuf.JobType.Universal) hash ^= Job.GetHashCode();
       if (Level != 0) hash ^= Level.GetHashCode();
-      if (RoleToken.Length != 0) hash ^= RoleToken.GetHashCode();
+      if (RoleId != 0) hash ^= RoleId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -320,9 +325,9 @@ namespace Dcgameprotobuf {
         output.WriteRawTag(24);
         output.WriteInt32(Level);
       }
-      if (RoleToken.Length != 0) {
-        output.WriteRawTag(34);
-        output.WriteString(RoleToken);
+      if (RoleId != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(RoleId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -341,8 +346,8 @@ namespace Dcgameprotobuf {
       if (Level != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
       }
-      if (RoleToken.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(RoleToken);
+      if (RoleId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoleId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -364,8 +369,8 @@ namespace Dcgameprotobuf {
       if (other.Level != 0) {
         Level = other.Level;
       }
-      if (other.RoleToken.Length != 0) {
-        RoleToken = other.RoleToken;
+      if (other.RoleId != 0) {
+        RoleId = other.RoleId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -390,8 +395,8 @@ namespace Dcgameprotobuf {
             Level = input.ReadInt32();
             break;
           }
-          case 34: {
-            RoleToken = input.ReadString();
+          case 32: {
+            RoleId = input.ReadInt32();
             break;
           }
         }
@@ -581,7 +586,7 @@ namespace Dcgameprotobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public LoginSvrReq(LoginSvrReq other) : this() {
-      roleToken_ = other.roleToken_;
+      roleId_ = other.roleId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -590,14 +595,14 @@ namespace Dcgameprotobuf {
       return new LoginSvrReq(this);
     }
 
-    /// <summary>Field number for the "roleToken" field.</summary>
-    public const int RoleTokenFieldNumber = 1;
-    private string roleToken_ = "";
+    /// <summary>Field number for the "roleId" field.</summary>
+    public const int RoleIdFieldNumber = 1;
+    private int roleId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string RoleToken {
-      get { return roleToken_; }
+    public int RoleId {
+      get { return roleId_; }
       set {
-        roleToken_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        roleId_ = value;
       }
     }
 
@@ -614,14 +619,14 @@ namespace Dcgameprotobuf {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (RoleToken != other.RoleToken) return false;
+      if (RoleId != other.RoleId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (RoleToken.Length != 0) hash ^= RoleToken.GetHashCode();
+      if (RoleId != 0) hash ^= RoleId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -635,9 +640,9 @@ namespace Dcgameprotobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (RoleToken.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(RoleToken);
+      if (RoleId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(RoleId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -647,8 +652,8 @@ namespace Dcgameprotobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (RoleToken.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(RoleToken);
+      if (RoleId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoleId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -661,8 +666,8 @@ namespace Dcgameprotobuf {
       if (other == null) {
         return;
       }
-      if (other.RoleToken.Length != 0) {
-        RoleToken = other.RoleToken;
+      if (other.RoleId != 0) {
+        RoleId = other.RoleId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -675,8 +680,407 @@ namespace Dcgameprotobuf {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
-            RoleToken = input.ReadString();
+          case 8: {
+            RoleId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///登录成功
+  ///1010004
+  /// </summary>
+  public sealed partial class LoginSvrRes : pb::IMessage<LoginSvrRes> {
+    private static readonly pb::MessageParser<LoginSvrRes> _parser = new pb::MessageParser<LoginSvrRes>(() => new LoginSvrRes());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<LoginSvrRes> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Dcgameprotobuf.PlayerReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LoginSvrRes() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LoginSvrRes(LoginSvrRes other) : this() {
+      error_ = other.error_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LoginSvrRes Clone() {
+      return new LoginSvrRes(this);
+    }
+
+    /// <summary>Field number for the "error" field.</summary>
+    public const int ErrorFieldNumber = 1;
+    private bool error_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Error {
+      get { return error_; }
+      set {
+        error_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as LoginSvrRes);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(LoginSvrRes other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Error != other.Error) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Error != false) hash ^= Error.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Error != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(Error);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Error != false) {
+        size += 1 + 1;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(LoginSvrRes other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Error != false) {
+        Error = other.Error;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Error = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///添加角色
+  ///1010005
+  /// </summary>
+  public sealed partial class AddRoleReq : pb::IMessage<AddRoleReq> {
+    private static readonly pb::MessageParser<AddRoleReq> _parser = new pb::MessageParser<AddRoleReq>(() => new AddRoleReq());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AddRoleReq> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Dcgameprotobuf.PlayerReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddRoleReq() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddRoleReq(AddRoleReq other) : this() {
+      job_ = other.job_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddRoleReq Clone() {
+      return new AddRoleReq(this);
+    }
+
+    /// <summary>Field number for the "job" field.</summary>
+    public const int JobFieldNumber = 1;
+    private global::Dcgameprotobuf.JobType job_ = global::Dcgameprotobuf.JobType.Universal;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Dcgameprotobuf.JobType Job {
+      get { return job_; }
+      set {
+        job_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AddRoleReq);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AddRoleReq other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Job != other.Job) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Job != global::Dcgameprotobuf.JobType.Universal) hash ^= Job.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Job != global::Dcgameprotobuf.JobType.Universal) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) Job);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Job != global::Dcgameprotobuf.JobType.Universal) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Job);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AddRoleReq other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Job != global::Dcgameprotobuf.JobType.Universal) {
+        Job = other.Job;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Job = (global::Dcgameprotobuf.JobType) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///添加角色
+  ///1010006
+  /// </summary>
+  public sealed partial class AddRoleRes : pb::IMessage<AddRoleRes> {
+    private static readonly pb::MessageParser<AddRoleRes> _parser = new pb::MessageParser<AddRoleRes>(() => new AddRoleRes());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AddRoleRes> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Dcgameprotobuf.PlayerReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddRoleRes() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddRoleRes(AddRoleRes other) : this() {
+      error_ = other.error_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AddRoleRes Clone() {
+      return new AddRoleRes(this);
+    }
+
+    /// <summary>Field number for the "error" field.</summary>
+    public const int ErrorFieldNumber = 1;
+    private bool error_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Error {
+      get { return error_; }
+      set {
+        error_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AddRoleRes);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AddRoleRes other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Error != other.Error) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Error != false) hash ^= Error.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Error != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(Error);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Error != false) {
+        size += 1 + 1;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AddRoleRes other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Error != false) {
+        Error = other.Error;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Error = input.ReadBool();
             break;
           }
         }

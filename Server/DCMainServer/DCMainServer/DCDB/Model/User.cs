@@ -3,10 +3,11 @@ using SQLite;
 
 namespace DC.Model
 {
+    [ModelCls]
     public class User
     {
         [PrimaryKey, AutoIncrement]
-        public long ID { get; set; }
+        public int ID { get; set; }
 
         [Indexed]
         public string Token { get; set; }

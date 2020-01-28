@@ -8,7 +8,6 @@
   <ItemGroup>
     <Folder Include="DCProto\" />
     <Folder Include="DCConfig\" />
-    <Folder Include="DCFramework\" />
   </ItemGroup>
 
   <ItemGroup>

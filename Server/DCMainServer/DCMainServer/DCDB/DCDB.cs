@@ -1,18 +1,37 @@
-﻿using DC.Model;
+﻿using System.Linq;
+using DC.Model;
 using SQLite;
 
 namespace DC
 {
-    public class DCDB
+    public class DCDB : Singleton<DCDB>
     {
-        public const string db_path = "";
 
         private SQLiteConnection mCon;
 
-        public void Init()
+        public SQLiteConnection GetCon()
         {
-            var db = new SQLiteConnection("foofoo");
-            db.CreateTable<User>();
+            return mCon;
+        }
+
+        protected override void OnInit()
+        {
+            
+        }
+
+        public void Setup(string db_path)
+        {
+            mCon = new SQLiteConnection(db_path);
+            var types = GetType().Assembly.GetTypes().Where(t=>t.GetCustomAttributes(typeof(ModelCls),false).Length > 0);
+            foreach (var modelType in types)
+            {
+                mCon.CreateTable(modelType);
+            }
+        }
+
+        public void TestQuery()
+        {
+            mCon.Table<Role>().Where(r => r.user_id == 1);
         }
 
         public bool Execute(string sql)

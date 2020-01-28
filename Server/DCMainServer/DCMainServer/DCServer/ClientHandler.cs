@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Text;
+using DC.Model;
 using Dcgameprotobuf;
+using Google.Protobuf;
 
 namespace DC.Net
 {
@@ -12,9 +14,9 @@ namespace DC.Net
     {
         public NetworkServer Server;
 
-        public string UserToken;
+        public User User;
 
-        public string RoleToken;
+        public Role Role;
 
         private NetChannel mChannel;
 
@@ -44,6 +46,20 @@ namespace DC.Net
             var protoPacket = ProtoPacket.FromRecvBuf(packet.Bytes, 0, packet.Length);
             var id = protoPacket.protoId;
             ReqDispatcher.Instance.Dispatch(this, id, protoPacket);
+        }
+
+        private void Send(int id, byte[] content)
+        {
+            mChannel.Send(SendBuf.From(DCGameProtocol.GetIntBuf(id)), SendBuf.From(content));
+        }
+
+        public void Send(IMessage req)
+        {
+            var id = DCGameProtocol.GetId(req);
+            if (id != 0)
+            {
+                Send(id, req.ToByteArray());
+            }
         }
 
         private void TestEcho(Packet packet)

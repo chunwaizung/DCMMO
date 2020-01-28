@@ -28,7 +28,7 @@
             errorRes.Msg = msg;
             errorRes.OpCode = op;
 
-            packet.res = errorRes;
+            packet.protoObj = errorRes;
             
             return packet;
         }
@@ -49,17 +49,17 @@
             return packet;
         }
 
-        object res;
+        object protoObj;
 
-        public object Res
+        public object ProtoObj
         {
             get
             {
-                if (res == null)
+                if (protoObj == null)
                 {
-                    res = DCGameProtocol.Parse(protoId, buf, offset, protoLen);
+                    protoObj = DCGameProtocol.Parse(protoId, buf, offset, protoLen);
                 }
-                return res;
+                return protoObj;
             }
         }
 

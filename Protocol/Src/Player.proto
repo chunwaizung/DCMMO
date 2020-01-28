@@ -24,7 +24,7 @@ message RoleInfo{
     string name = 1;
     JobType job = 2;
     int32 level = 3;
-    string roleToken = 4;
+    int32 roleId = 4;
 }
 
 //1010002
@@ -36,11 +36,23 @@ message RoleRes {
 //登录游戏服务器发送获得的roleToken用来定位当前登录的角色
 //1010003
 message LoginSvrReq{
-    string roleToken = 1;
+    int32 roleId = 1;
+}
+
+//登录成功
+//1010004
+message LoginSvrRes{
+    bool error = 1;
 }
 
 //添加角色
-//1010004
+//1010005
 message AddRoleReq{
   JobType job = 1;
+}
+
+//添加角色
+//1010006
+message AddRoleRes{
+    bool error = 1;
 }

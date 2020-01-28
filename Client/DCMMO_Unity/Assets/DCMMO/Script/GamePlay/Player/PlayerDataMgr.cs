@@ -28,14 +28,14 @@ namespace DC
                 return;
             }
 
-            var roleRes = (RoleRes) protoPkt.Res;
+            var roleRes = (RoleRes) protoPkt.ProtoObj;
 
             mRoleList.AddRange(roleRes.Infos);
         }
 
         public static ErrorCode CheckError(int id, ProtoPacket pkt)
         {
-            if (pkt.Res is ErrorRes errorRes)
+            if (pkt.ProtoObj is ErrorRes errorRes)
             {
                 return (ErrorCode) errorRes.No;
             }

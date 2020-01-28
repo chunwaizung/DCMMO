@@ -2,11 +2,12 @@
 
 namespace DC.Model
 {
+    [ModelCls]
     public class PlayerAttrData
     {
         [PrimaryKey, AutoIncrement]
-        public long id { get; set; }
-        public long role_id { get; set; }
+        public int id { get; set; }
+        public int role_id { get; set; }
         public int hp { get; set; }
         public int mp { get; set; }
         public int physic_atk { get; set; }
