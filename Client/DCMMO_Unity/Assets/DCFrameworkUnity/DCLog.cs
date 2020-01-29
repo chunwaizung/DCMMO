@@ -24,12 +24,12 @@ namespace DC
 
         public static void Err(string log, params object[] objs)
         {
-            Debug.Log(string.Format(log, objs));
+            Debug.LogError(string.Format(log, objs));
         }
 
         public static void Waring(string log, params object[] objs)
         {
-            Debug.Log(string.Format(log, objs));
+            Debug.LogWarning(string.Format(log, objs));
         }
     }
 }

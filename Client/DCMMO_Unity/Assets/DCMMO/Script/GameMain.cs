@@ -10,21 +10,18 @@ namespace DC
 
         private SystemManager mSysManager;
 
-        private UnityMsgDispatcher mUnityMsgDispatcher;
-
-        public UnityMsgDispatcher UnityMsgDispatcher => mUnityMsgDispatcher;
+        public UnityMsgDispatcher UnityMsgDispatcher { get; private set; }
 
         void Awake()
         {
             _Instance = this;
 
-            mUnityMsgDispatcher = gameObject.AddComponent<UnityMsgDispatcher>();
-
+            //init
             var dcTimer = DCTimer.Instance;
 
-            mSysManager = SystemManager.Instance;
+            UnityMsgDispatcher = gameObject.AddComponent<UnityMsgDispatcher>();
 
-            mUnityMsgDispatcher = new UnityMsgDispatcher();
+            mSysManager = SystemManager.Instance;
 
             mSysManager.Awake();
         }
@@ -38,6 +35,13 @@ namespace DC
         {
             mSysManager.Start();
 
+            mSysManager.GetSys<UISys>().ShowUi<LoginUI>();
+
+            DCCoroutine.Instance.StartCoroutine(GameServerDataMgr.Instance.ReqSvrData(OnSvrData));
+        }
+
+        private void TestLoadLevel()
+        {
             var id = 100001;
             var mapCfg = MapCfgMgr.Instance.GetMapConfigByID(id);
             if (null != mapCfg)
@@ -48,8 +52,6 @@ namespace DC
             {
                 DCLog.Err("can not load level with id : {0}", id);
             }
-
-            DCCoroutine.Instance.StartCoroutine(GameServerDataMgr.Instance.ReqSvrData(OnSvrData));
         }
 
         void OnSvrData()

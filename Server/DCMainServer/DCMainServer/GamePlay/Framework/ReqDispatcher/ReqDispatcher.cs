@@ -8,6 +8,8 @@ using Dcgameprotobuf;
 
 namespace DC
 {
+    public delegate void ReqHandler(ClientHandler clientHandler, int id, ProtoPacket packet);
+
     public class ReqDispatcher : Singleton<ReqDispatcher>
     {
         private List<BaseReqHandler> mReqHandlers = new List<BaseReqHandler>();
@@ -29,8 +31,13 @@ namespace DC
                 foreach (var methodInfo in methodInfos)
                 {
                     var handlerCfg = methodInfo.GetCustomAttribute<HandlerCfg>();
+                    if (handlerCfg == null)
+                    {
+                        continue;
+                    }
+
                     var cfgMId = handlerCfg.mId;
-                    var handler = methodInfo.CreateDelegate(typeof(void), instance);
+                    var handler = methodInfo.CreateDelegate(typeof(ReqHandler), instance);
                     mIdToDelegates.Add(cfgMId, handler);
                 }
                 mReqHandlers.Add((BaseReqHandler) instance);

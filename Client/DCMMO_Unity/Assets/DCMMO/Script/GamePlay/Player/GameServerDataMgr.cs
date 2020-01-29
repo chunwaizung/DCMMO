@@ -15,13 +15,7 @@ namespace DC
 
         protected override void OnInit()
         {
-            mServerConfigs.Add(new ServerConfig()
-            {
-                host = "127.0.0.1",
-                port = 10998,
-                newSvr = 1,
-                state = (int) SvrState.low_load
-            });
+            
         }
 
         public ServerConfig GetLastLoginSvr()
@@ -33,7 +27,13 @@ namespace DC
         {
             if (Application.isEditor)
             {
-
+                mServerConfigs.Add(new ServerConfig()
+                {
+                    host = "127.0.0.1",
+                    port = 10998,
+                    newSvr = 1,
+                    state = (int)SvrState.low_load
+                });
             }
             else
             {

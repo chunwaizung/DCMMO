@@ -185,7 +185,7 @@ namespace DC
 
         public static string GetAssetPath(string name)
         {
-            return "Assets/DCMMO/Prefab/UI/" + name;
+            return "Assets/DCMMO/DCAssets/UI/" + name;
         }
 
     }

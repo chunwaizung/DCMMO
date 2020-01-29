@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using DC.DCResourceSystem;
 using UnityEngine;
 using UnityEditor;
 
@@ -7,6 +9,8 @@ namespace DC
 {
     public class ResourceBuilderEditor : Editor
     {
+        private static ResourceBuilder sResourceBuilder = new ResourceBuilder();
+
         [MenuItem("DC/ResourceBuilder/Test")]
         public static void Test()
         {
@@ -16,5 +20,15 @@ namespace DC
 
             DCLog.Log("end");
         }
+
+        [MenuItem("DC/ResourceBuilder/BuildAssetExtension")]
+        public static void BuildAssetExtensionMap()
+        {
+            var root = Application.dataPath + "/DCMMO/DCAssets/";
+            var map = sResourceBuilder.BuildAssetExtensionMap(root);
+            ResourceSys.SerializeExtMap(map, Path.Combine(Application.dataPath, "DCMMO/DCAssets/ext_map.bytes"));
+        }
+
     }
+
 }

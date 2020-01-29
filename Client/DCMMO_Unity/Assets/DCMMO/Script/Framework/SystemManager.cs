@@ -44,10 +44,12 @@ namespace DC
         {
             var networkService = new NetworkService();
             networkService.SetUnityMsgDispatcher(SysBox.Instance.GameMainP.UnityMsgDispatcher);
-            
             AddSys(networkService);
+
             AddSys(new ActorSys());
             AddSys(new LevelSys());
+            AddSys(new TaskSys());
+            AddSys(new UISys());
 
             foreach (var syse in mSysList)
             {
