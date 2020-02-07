@@ -27,7 +27,7 @@ def getComplieProtoCommand(srcDir,dstDir,filePath):
   return cmdStr
 
 files = dc_file_util.getAllFilesWithExt(src_dir,".proto")
-print "count src files: ", len(files)
+print("count src files: ", len(files))
 cmdFile = open("generate_complie.bat","w")
 for filePath in files:
   cmdStr = getComplieProtoCommand(src_dir, dst_dir, filePath)

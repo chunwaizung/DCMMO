@@ -30,10 +30,11 @@ namespace Dcgameprotobuf {
             "IAEoBRIOCgZyb2xlSWQYBCABKAUiQwoHUm9sZVJlcxIPCgdlcnJvck5vGAEg",
             "ASgFEicKBWluZm9zGAIgAygLMhguZGNnYW1lcHJvdG9idWYuUm9sZUluZm8i",
             "HQoLTG9naW5TdnJSZXESDgoGcm9sZUlkGAEgASgFIhwKC0xvZ2luU3ZyUmVz",
-            "Eg0KBWVycm9yGAEgASgIIjIKCkFkZFJvbGVSZXESJAoDam9iGAEgASgOMhcu",
-            "ZGNnYW1lcHJvdG9idWYuSm9iVHlwZSIbCgpBZGRSb2xlUmVzEg0KBWVycm9y",
-            "GAEgASgIKi4KB0pvYlR5cGUSDQoJVU5JVkVSU0FMEAASCQoFU2FiZXIQARIJ",
-            "CgVNYWdpYxACYgZwcm90bzM="));
+            "Eg0KBWVycm9yGAEgASgIIkAKCkFkZFJvbGVSZXESJAoDam9iGAEgASgOMhcu",
+            "ZGNnYW1lcHJvdG9idWYuSm9iVHlwZRIMCgRuYW1lGAIgASgJIkMKCkFkZFJv",
+            "bGVSZXMSDQoFZXJyb3IYASABKAgSJgoEaW5mbxgCIAEoCzIYLmRjZ2FtZXBy",
+            "b3RvYnVmLlJvbGVJbmZvKjwKB0pvYlR5cGUSDQoJVU5JVkVSU0FMEAASCQoF",
+            "U2FiZXIQARIJCgVNYWdpYxACEgwKCERlZmVuZGVyEANiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Dcgameprotobuf.JobType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -42,8 +43,8 @@ namespace Dcgameprotobuf {
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.RoleRes), global::Dcgameprotobuf.RoleRes.Parser, new[]{ "ErrorNo", "Infos" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.LoginSvrReq), global::Dcgameprotobuf.LoginSvrReq.Parser, new[]{ "RoleId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.LoginSvrRes), global::Dcgameprotobuf.LoginSvrRes.Parser, new[]{ "Error" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.AddRoleReq), global::Dcgameprotobuf.AddRoleReq.Parser, new[]{ "Job" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.AddRoleRes), global::Dcgameprotobuf.AddRoleRes.Parser, new[]{ "Error" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.AddRoleReq), global::Dcgameprotobuf.AddRoleReq.Parser, new[]{ "Job", "Name" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.AddRoleRes), global::Dcgameprotobuf.AddRoleRes.Parser, new[]{ "Error", "Info" }, null, null, null, null)
           }));
     }
     #endregion
@@ -54,6 +55,7 @@ namespace Dcgameprotobuf {
     [pbr::OriginalName("UNIVERSAL")] Universal = 0,
     [pbr::OriginalName("Saber")] Saber = 1,
     [pbr::OriginalName("Magic")] Magic = 2,
+    [pbr::OriginalName("Defender")] Defender = 3,
   }
 
   #endregion
@@ -558,7 +560,7 @@ namespace Dcgameprotobuf {
   }
 
   /// <summary>
-  ///登录游戏服务器发送获得的roleToken用来定位当前登录的角色
+  ///登录游戏服务器发送获得的roleId用来定位当前登录的角色
   ///1010003
   /// </summary>
   public sealed partial class LoginSvrReq : pb::IMessage<LoginSvrReq> {
@@ -853,6 +855,7 @@ namespace Dcgameprotobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public AddRoleReq(AddRoleReq other) : this() {
       job_ = other.job_;
+      name_ = other.name_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -872,6 +875,17 @@ namespace Dcgameprotobuf {
       }
     }
 
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as AddRoleReq);
@@ -886,6 +900,7 @@ namespace Dcgameprotobuf {
         return true;
       }
       if (Job != other.Job) return false;
+      if (Name != other.Name) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -893,6 +908,7 @@ namespace Dcgameprotobuf {
     public override int GetHashCode() {
       int hash = 1;
       if (Job != global::Dcgameprotobuf.JobType.Universal) hash ^= Job.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -910,6 +926,10 @@ namespace Dcgameprotobuf {
         output.WriteRawTag(8);
         output.WriteEnum((int) Job);
       }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -920,6 +940,9 @@ namespace Dcgameprotobuf {
       int size = 0;
       if (Job != global::Dcgameprotobuf.JobType.Universal) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Job);
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -935,6 +958,9 @@ namespace Dcgameprotobuf {
       if (other.Job != global::Dcgameprotobuf.JobType.Universal) {
         Job = other.Job;
       }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -948,6 +974,10 @@ namespace Dcgameprotobuf {
             break;
           case 8: {
             Job = (global::Dcgameprotobuf.JobType) input.ReadEnum();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
             break;
           }
         }
@@ -986,6 +1016,7 @@ namespace Dcgameprotobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public AddRoleRes(AddRoleRes other) : this() {
       error_ = other.error_;
+      info_ = other.info_ != null ? other.info_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1005,6 +1036,17 @@ namespace Dcgameprotobuf {
       }
     }
 
+    /// <summary>Field number for the "info" field.</summary>
+    public const int InfoFieldNumber = 2;
+    private global::Dcgameprotobuf.RoleInfo info_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Dcgameprotobuf.RoleInfo Info {
+      get { return info_; }
+      set {
+        info_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as AddRoleRes);
@@ -1019,6 +1061,7 @@ namespace Dcgameprotobuf {
         return true;
       }
       if (Error != other.Error) return false;
+      if (!object.Equals(Info, other.Info)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1026,6 +1069,7 @@ namespace Dcgameprotobuf {
     public override int GetHashCode() {
       int hash = 1;
       if (Error != false) hash ^= Error.GetHashCode();
+      if (info_ != null) hash ^= Info.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1043,6 +1087,10 @@ namespace Dcgameprotobuf {
         output.WriteRawTag(8);
         output.WriteBool(Error);
       }
+      if (info_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Info);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1053,6 +1101,9 @@ namespace Dcgameprotobuf {
       int size = 0;
       if (Error != false) {
         size += 1 + 1;
+      }
+      if (info_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Info);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1068,6 +1119,12 @@ namespace Dcgameprotobuf {
       if (other.Error != false) {
         Error = other.Error;
       }
+      if (other.info_ != null) {
+        if (info_ == null) {
+          Info = new global::Dcgameprotobuf.RoleInfo();
+        }
+        Info.MergeFrom(other.Info);
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1081,6 +1138,13 @@ namespace Dcgameprotobuf {
             break;
           case 8: {
             Error = input.ReadBool();
+            break;
+          }
+          case 18: {
+            if (info_ == null) {
+              Info = new global::Dcgameprotobuf.RoleInfo();
+            }
+            input.ReadMessage(Info);
             break;
           }
         }

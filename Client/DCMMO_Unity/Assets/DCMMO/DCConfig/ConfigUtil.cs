@@ -14,7 +14,7 @@ namespace DC
 
         public static byte[] GetBin(string binFileName)
         {
-            var assetPath = "Assets/DCMMO/DCConfig/bin/" + binFileName + ".bytes";
+            var assetPath = "Assets/DCMMO/DCAssets/cfgbin/" + binFileName + ".bytes";
             return ResourceSys.Instance.Load<TextAsset>(assetPath).bytes;
         }
     }

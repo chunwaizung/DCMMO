@@ -18,6 +18,7 @@ enum JobType{
     UNIVERSAL = 0;
     Saber = 1;
     Magic = 2;
+    Defender = 3;
 }
 
 message RoleInfo{
@@ -33,7 +34,7 @@ message RoleRes {
     repeated RoleInfo infos = 2;
 }
 
-//登录游戏服务器发送获得的roleToken用来定位当前登录的角色
+//登录游戏服务器发送获得的roleId用来定位当前登录的角色
 //1010003
 message LoginSvrReq{
     int32 roleId = 1;
@@ -49,10 +50,12 @@ message LoginSvrRes{
 //1010005
 message AddRoleReq{
   JobType job = 1;
+  string name = 2;
 }
 
 //添加角色
 //1010006
 message AddRoleRes{
     bool error = 1;
+    RoleInfo info = 2;
 }

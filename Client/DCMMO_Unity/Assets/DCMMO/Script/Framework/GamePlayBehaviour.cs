@@ -7,4 +7,10 @@ namespace DC
         public SysBox SysBoxP => SysBox.Instance;
 
     }
+
+    public class MonoGamePlayBehaviour : BaseMonoBehaviour
+    {
+        public SysBox SysBoxP => SysBox.Instance;
+
+    }
 }

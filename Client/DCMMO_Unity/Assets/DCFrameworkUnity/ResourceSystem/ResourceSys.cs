@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,10 +20,20 @@ namespace DC.DCResourceSystem
 
         public string GetPathWithExt(string path)
         {
-            if (mPathToExt.TryGetValue(path, out var newPath))
+            if (null != mPathToExt && mPathToExt.TryGetValue(path, out var ext))
             {
-                return newPath;
+                return path + ext;
             }
+#if UNITY_EDITOR
+            if (null != mPathToExt)
+            {
+                var absPath = Application.dataPath.Replace("Assets", path);
+                var dir = Path.GetDirectoryName(absPath);
+                var name = Path.GetFileName(path);
+                var absPathWithExt = Directory.GetFiles(dir, name + ".*", SearchOption.TopDirectoryOnly).First(item => !item.EndsWith(".meta"));
+                return path + Path.GetExtension(absPathWithExt);
+            }
+#endif
             return path;
         }
 
@@ -59,7 +70,7 @@ namespace DC.DCResourceSystem
         }
         public static void SerializeExtMap(Dictionary<string, string> map, string path)
         {
-            using (var writer = new StreamWriter(File.OpenWrite(path)))
+            using (var writer = new StreamWriter(File.Open(path, FileMode.OpenOrCreate, FileAccess.Write)))
             {
                 foreach (var kv in map)
                 {
@@ -84,8 +95,16 @@ namespace DC.DCResourceSystem
                         continue;
                     }
 
+                    readLine = reader.ReadLine();
+                    if (string.IsNullOrEmpty(readLine))
+                    {
+                        break;
+                    }
+
                     dic.Add(key, readLine);
+                    
                     key = null;
+                    readLine = reader.ReadLine();
                 }
             }
 

@@ -10,7 +10,7 @@
 
         public const int map_evt = sys_evt + evt_delta * 2;
 
-        public const int user_evt = sys_evt + evt_delta * 3;
+        public const int player_evt = sys_evt + evt_delta * 3;
 
     }
 }

@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 1988730587
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: ext_map
+      Dependencies: {}
+    Info_1:
+      Name: democfgmgr
+      Dependencies: {}
+    Info_2:
+      Name: mapcfgmgr
+      Dependencies: {}
+    Info_3:
+      Name: loginui
+      Dependencies: {}

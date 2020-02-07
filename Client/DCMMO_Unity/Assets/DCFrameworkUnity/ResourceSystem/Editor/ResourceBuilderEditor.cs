@@ -27,7 +27,17 @@ namespace DC
             var root = Application.dataPath + "/DCMMO/DCAssets/";
             var map = sResourceBuilder.BuildAssetExtensionMap(root);
             ResourceSys.SerializeExtMap(map, Path.Combine(Application.dataPath, "DCMMO/DCAssets/ext_map.bytes"));
+            
+            AssetDatabase.Refresh();
         }
+
+
+        [MenuItem("DC/ResourceBuilder/BuildTest1")]
+        public static void BuildTest1()
+        {
+            sResourceBuilder.BuildTest1(Path.Combine(Application.dataPath, "DCMMO/DCAssets"));
+        }
+
 
     }
 

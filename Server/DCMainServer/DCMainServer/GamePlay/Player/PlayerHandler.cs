@@ -11,17 +11,27 @@ namespace DC
         public void HandleAddRoleReq(ClientHandler clientHandler, int id, ProtoPacket packet)
         {
             var roleReq = (AddRoleReq)packet.ProtoObj;
-            var role = PlayerDB.Instance.CreateRole(clientHandler.User.ID, (int) roleReq.Job);
+            var role = PlayerDB.Instance.CreateRole(clientHandler.User.ID, (int) roleReq.Job, roleReq.Name);
             clientHandler.Role = role;
             var addRoleRes = new AddRoleRes();
             clientHandler.Send(addRoleRes);
+        }
+
+        private User CheckUser(string userToken)
+        {
+            var user = PlayerDB.Instance.GetUser(userToken);
+            if (null == user)
+            {
+                user = PlayerDB.Instance.CreateUser(userToken);
+            }
+            return user;
         }
 
         [HandlerCfg(DCProtocolIds.RoleReq)]
         public void HandleRoleReq(ClientHandler clientHandler,int id, ProtoPacket packet)
         {
             var roleReq = (RoleReq) packet.ProtoObj;
-            clientHandler.User = PlayerDB.Instance.GetUser(roleReq.UserToken);
+            clientHandler.User = CheckUser(roleReq.UserToken);
 
             var roles = PlayerDB.Instance.GetRoles(clientHandler.User.ID);
             var res = new RoleRes();

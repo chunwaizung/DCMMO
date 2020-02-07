@@ -19,6 +19,8 @@ namespace DC
             {
                 sBd.Append(o).Append(',');
             }
+
+            sBd.Remove(sBd.Length - 1, 1);
             Debug.Log(sBd.ToString());
         }
 

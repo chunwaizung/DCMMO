@@ -46,6 +46,7 @@ namespace DC
 
         public void Dispatch(ClientHandler clientHandler,int id, ProtoPacket packet)
         {
+            DCLog.LogEx("handle req ", id);
             if (mIdToDelegates.TryGetValue(id, out var handler))
             {
                 handler.DynamicInvoke(clientHandler, id, packet);

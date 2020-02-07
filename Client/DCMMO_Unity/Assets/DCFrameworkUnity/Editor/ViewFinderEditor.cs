@@ -55,6 +55,7 @@ namespace DC
             typeof(RawImage),
             typeof(InputField),
             typeof(Toggle),
+            typeof(Dropdown),
 
         };
 

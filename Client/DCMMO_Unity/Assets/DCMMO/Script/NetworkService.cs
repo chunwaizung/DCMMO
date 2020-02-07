@@ -61,13 +61,13 @@ namespace DC
 
             mChannel.Init(client);
 
-
+            mChannel.StartReceive();
             //todo start heart beat
 
             callback?.Invoke();
         }
 
-        public void AddHandler(int id, Action<int, object> callback)
+        public void AddHandler(int id, Action<int, ProtoPacket> callback)
         {
             if (mIdToNormalHandler.TryGetValue(id, out var delegateObj))
             {
@@ -112,35 +112,35 @@ namespace DC
 
         }
 
-        private void Send(int id, byte[] content, Action<int, ProtoPacket> callback)
+        private void Send(int reqId, int resId, byte[] content, Action<int, ProtoPacket> callback)
         {
             //todo check network
 
             //previous req is override, notify error
-            if (mIdToOnceHandler.TryGetValue(id, out var delegateObj))
+            if (mIdToOnceHandler.TryGetValue(resId, out var delegateObj))
             {
-                var error = ProtoPacket.CreateError(id, (int) ErrorCode.req_override, string.Empty);
+                var error = ProtoPacket.CreateError(resId, (int) ErrorCode.req_override, string.Empty);
                 if (delegateObj != null)
                 {
-                    delegateObj.DynamicInvoke(id, error);
+                    delegateObj.DynamicInvoke(resId, error);
                 }
-                mIdToOnceHandler.Remove(id);
+                mIdToOnceHandler.Remove(resId);
             }
 
             if (callback != null)
             {
-                AddToHandler(id, callback, mIdToOnceHandler);
+                AddToHandler(resId, callback, mIdToOnceHandler);
             }
 
-            mChannel.Send(SendBuf.From(DCGameProtocol.GetIntBuf(id)), SendBuf.From(content));
+            mChannel.Send(SendBuf.From(DCGameProtocol.GetIntBuf(reqId)), SendBuf.From(content));
         }
 
-        public void Send(IMessage req, Action<int, ProtoPacket> callback)
+        public void Send(IMessage req, Action<int, ProtoPacket> callback, int resId)
         {
             var id = DCGameProtocol.GetId(req);
             if (id != 0)
             {
-                Send(id, req.ToByteArray(), callback);
+                Send(id, resId, req.ToByteArray(), callback);
             }
         }
 
@@ -148,12 +148,14 @@ namespace DC
         {
             var protoPacket = ProtoPacket.FromRecvBuf(packet.Bytes, 0, packet.Length);
             var id = protoPacket.protoId;
+            DCLog.LogEx("receive protoId ", id);
             if (id > 0)
             {
+                //长期监听的先执行
+                Invoke(id, protoPacket, mIdToNormalHandler);
+
                 Invoke(id, protoPacket, mIdToOnceHandler);
                 mIdToOnceHandler.Remove(id);
-
-                Invoke(id, protoPacket, mIdToNormalHandler);
             }
         }
 
@@ -166,6 +168,12 @@ namespace DC
                     delegateObj.DynamicInvoke(id, packet);
                 }
             }
+        }
+
+        public void Stop()
+        {
+            mChannel.Close();
+            mChannel.DisposeRes();
         }
     }
 

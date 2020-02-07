@@ -28,7 +28,7 @@ namespace DC
             {
                 if (null == _mUiRoot)
                 {
-                    _mUiRoot = GameObject.Find("UIRoot").transform.Find("UICanvas");
+                    _mUiRoot = GameObject.Find("UIRoot").transform.Find("UIRootCanvas");
                 }
 
                 return _mUiRoot;
@@ -75,7 +75,11 @@ namespace DC
 
             var assetPath = GetAssetPath(uiName);
             var prefab = ResourceSys.Instance.Load<GameObject>(assetPath);
-
+            if (prefab == null)
+            {
+                DCLog.LogEx("null asset ", assetPath, uiName);
+                return null;
+            }
             var instance = UnityEngine.Object.Instantiate(prefab, UiRoot);
             baseUi = instance.GetComponent<BaseUI>();
             baseUi.Init(param);

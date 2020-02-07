@@ -1,6 +1,8 @@
-D:/projects/unity2019/DCMMO/Client/DCMMO_Unity/Assets/DCMMO/DCAssets/cfgbin\DemoCfgMgr
+Assets/DCMMO/DCAssets/ext_map
 .bytes
-D:/projects/unity2019/DCMMO/Client/DCMMO_Unity/Assets/DCMMO/DCAssets/cfgbin\MapCfgMgr
+Assets/DCMMO/DCAssets/cfgbin/DemoCfgMgr
 .bytes
-D:/projects/unity2019/DCMMO/Client/DCMMO_Unity/Assets/DCMMO/DCAssets/UI\LoginUI
+Assets/DCMMO/DCAssets/cfgbin/MapCfgMgr
+.bytes
+Assets/DCMMO/DCAssets/UI/LoginUI
 .prefab

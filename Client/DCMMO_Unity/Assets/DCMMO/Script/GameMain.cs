@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DC
 {
@@ -12,6 +13,8 @@ namespace DC
 
         public UnityMsgDispatcher UnityMsgDispatcher { get; private set; }
 
+        public GameObject[] NotDestroy;
+
         void Awake()
         {
             _Instance = this;
@@ -22,6 +25,11 @@ namespace DC
             UnityMsgDispatcher = gameObject.AddComponent<UnityMsgDispatcher>();
 
             mSysManager = SystemManager.Instance;
+
+            foreach (var gobj in NotDestroy)
+            {
+                DontDestroyOnLoad(gobj);
+            }
 
             mSysManager.Awake();
         }
@@ -40,23 +48,9 @@ namespace DC
             DCCoroutine.Instance.StartCoroutine(GameServerDataMgr.Instance.ReqSvrData(OnSvrData));
         }
 
-        private void TestLoadLevel()
-        {
-            var id = 100001;
-            var mapCfg = MapCfgMgr.Instance.GetMapConfigByID(id);
-            if (null != mapCfg)
-            {
-                SceneManager.LoadScene(System.IO.Path.GetFileNameWithoutExtension(mapCfg.AssetPath), LoadSceneMode.Additive);
-            }
-            else
-            {
-                DCLog.Err("can not load level with id : {0}", id);
-            }
-        }
-
         void OnSvrData()
         {
-            MsgSys.Send(GEvt.get_svr_list_suc);
+            MsgSys.Send(SysEvt.get_svr_list_suc);
         }
 
         public void OnApplicationPause()

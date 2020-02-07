@@ -6,7 +6,7 @@ namespace DCMainServer
 {
     class Program
     {
-        public const string db_path = "Demo.db";
+        public const string db_path = "D:/projects/unity2019/DCMMO/Server/DB/Demo.db";
 
         static void Main(string[] args)
         {

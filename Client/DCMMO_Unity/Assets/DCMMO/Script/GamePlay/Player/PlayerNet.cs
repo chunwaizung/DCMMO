@@ -10,7 +10,7 @@ namespace DC
             var roleReq = new RoleReq();
             roleReq.UserToken = userToken;
 
-            SysBoxP.NetworkServiceP.Send(roleReq, callback);
+            SysBoxP.NetworkServiceP.Send(roleReq, callback, DCProtocolIds.RoleRes);
         }
     }
 }

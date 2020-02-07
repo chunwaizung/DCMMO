@@ -81,6 +81,16 @@ namespace Dcgameprotobuf
         {
             return GetInt(buf, 0);
         }
+
+        public static ErrorCode CheckError(int id, ProtoPacket pkt)
+        {
+            if (pkt.ProtoObj is ErrorRes errorRes)
+            {
+                return (ErrorCode)errorRes.No;
+            }
+
+            return ErrorCode.UNIVERSAL;
+        }
     }
 }
 

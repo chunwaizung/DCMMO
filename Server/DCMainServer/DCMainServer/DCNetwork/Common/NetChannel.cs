@@ -68,6 +68,8 @@ namespace DC.Net
         {
             while (mSendBuf.Length > 0)
             {
+                if (mDisposed) return;
+
                 var stream = mClient.GetStream();
                 if (!stream.CanWrite)
                 {

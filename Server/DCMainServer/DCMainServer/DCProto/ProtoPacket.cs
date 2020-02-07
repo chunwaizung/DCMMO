@@ -10,6 +10,9 @@
         public int protoId;
         public byte[] buf;
 
+        /// <summary>
+        /// 实际的proto内容的byte数据开始位置
+        /// </summary>
         public int offset;
         public int protoLen;
 
@@ -45,7 +48,8 @@
             packet.protoId = DCGameProtocol.GetInt(buf, off + 2);
             packet.buf = buf;
             packet.offset = off + 2 + 4;
-            packet.protoLen = len - packet.offset;
+            //len = (protoIdBytesLength + protoContentBytesLength)
+            packet.protoLen = len - 4;
             return packet;
         }
 
@@ -61,6 +65,11 @@
                 }
                 return protoObj;
             }
+        }
+
+        public ErrorRes GetError()
+        {
+            return (ErrorRes)ProtoObj;
         }
 
     }

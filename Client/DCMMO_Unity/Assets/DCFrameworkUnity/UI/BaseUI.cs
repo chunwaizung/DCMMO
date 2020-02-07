@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace DC.UI
 {
-    public class BaseUI : GamePlayBehaviour
+    public class BaseUI : MonoGamePlayBehaviour
     {
         List<int> mTypes = new List<int>();
 
         List<Delegate> mDelegates = new List<Delegate>();
 
-        public GameObject gameObject;
+//        public GameObject gameObject;
 
         protected void AddSmartListener(int type, Action action)
         {

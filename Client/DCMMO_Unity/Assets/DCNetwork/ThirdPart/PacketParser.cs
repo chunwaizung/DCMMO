@@ -78,7 +78,7 @@ namespace DC.Net
                         }
                         else
                         {
-                            this.buffer.Read(this.packet.Bytes, 0, this.packetSize);
+                            this.buffer.Read(this.packet.Bytes, 2, this.packetSize);
                             this.packet.Length = this.packetSize;
                             this.isOK = true;
                             this.state = ParserState.PacketSize;

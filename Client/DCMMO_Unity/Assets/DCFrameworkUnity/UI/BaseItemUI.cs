@@ -15,6 +15,11 @@ namespace DC.UI
                     mVGen = GetComponent<VGen>();
                 }
 
+                if (null == mVGen)
+                {
+                    mVGen = gameObject.AddComponent<VGen>();
+                }
+
                 return mVGen;
             }
         }

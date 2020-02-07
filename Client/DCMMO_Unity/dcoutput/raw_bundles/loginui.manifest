@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 3227492977
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: fa0892ad4f7eec9a6b84730fe16ba8a0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: e25499938afdd00f2bddd9a86ad21941
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/DCMMO/DCAssets/UI/LoginUI.prefab
+Dependencies: []
