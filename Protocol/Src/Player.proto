@@ -1,7 +1,7 @@
 syntax="proto3";
 package dcgameprotobuf;
 
-//startNo = 1010000
+//start_no = 1010000
 
 /*
 登录的部分走http
@@ -10,52 +10,51 @@ package dcgameprotobuf;
 
 //请求角色列表
 //1010001
-message RoleReq {
+message PRoleReq {
     string userToken = 1;
 }
 
-enum JobType{
-    UNIVERSAL = 0;
-    Saber = 1;
-    Magic = 2;
-    Defender = 3;
+enum PJobType{
+    Saber = 0;
+    Magic = 1;
+    Defender = 2;
 }
 
-message RoleInfo{
+message PRoleInfo{
     string name = 1;
-    JobType job = 2;
+    PJobType job = 2;
     int32 level = 3;
     int32 roleId = 4;
 }
 
 //1010002
-message RoleRes {
+message PRoleRes {
     int32 errorNo = 1;
-    repeated RoleInfo infos = 2;
+    repeated PRoleInfo infos = 2;
 }
 
 //登录游戏服务器发送获得的roleId用来定位当前登录的角色
 //1010003
-message LoginSvrReq{
+message PLoginSvrReq{
     int32 roleId = 1;
 }
 
 //登录成功
 //1010004
-message LoginSvrRes{
+message PLoginSvrRes{
     bool error = 1;
 }
 
 //添加角色
 //1010005
-message AddRoleReq{
-  JobType job = 1;
+message PAddRoleReq{
+  PJobType job = 1;
   string name = 2;
 }
 
 //添加角色
 //1010006
-message AddRoleRes{
+message PAddRoleRes{
     bool error = 1;
-    RoleInfo info = 2;
+    PRoleInfo info = 2;
 }

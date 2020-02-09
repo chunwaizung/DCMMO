@@ -24,14 +24,14 @@ namespace Dcgameprotobuf {
     static DemoReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgpEZW1vLnByb3RvEg5kY2dhbWVwcm90b2J1ZiIdCgpEZW1vU3RyUmVxEg8K",
-            "B2NvbnRlbnQYASABKAkiHQoKRGVtb1N0clJlcxIPCgdjb250ZW50GAEgASgJ",
-            "YgZwcm90bzM="));
+            "CgpEZW1vLnByb3RvEg5kY2dhbWVwcm90b2J1ZiIeCgtQRGVtb1N0clJlcRIP",
+            "Cgdjb250ZW50GAEgASgJIh4KC1BEZW1vU3RyUmVzEg8KB2NvbnRlbnQYASAB",
+            "KAliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.DemoStrReq), global::Dcgameprotobuf.DemoStrReq.Parser, new[]{ "Content" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.DemoStrRes), global::Dcgameprotobuf.DemoStrRes.Parser, new[]{ "Content" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PDemoStrReq), global::Dcgameprotobuf.PDemoStrReq.Parser, new[]{ "Content" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PDemoStrRes), global::Dcgameprotobuf.PDemoStrRes.Parser, new[]{ "Content" }, null, null, null, null)
           }));
     }
     #endregion
@@ -41,11 +41,11 @@ namespace Dcgameprotobuf {
   /// <summary>
   ///2000001
   /// </summary>
-  public sealed partial class DemoStrReq : pb::IMessage<DemoStrReq> {
-    private static readonly pb::MessageParser<DemoStrReq> _parser = new pb::MessageParser<DemoStrReq>(() => new DemoStrReq());
+  public sealed partial class PDemoStrReq : pb::IMessage<PDemoStrReq> {
+    private static readonly pb::MessageParser<PDemoStrReq> _parser = new pb::MessageParser<PDemoStrReq>(() => new PDemoStrReq());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DemoStrReq> Parser { get { return _parser; } }
+    public static pb::MessageParser<PDemoStrReq> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -58,21 +58,21 @@ namespace Dcgameprotobuf {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DemoStrReq() {
+    public PDemoStrReq() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DemoStrReq(DemoStrReq other) : this() {
+    public PDemoStrReq(PDemoStrReq other) : this() {
       content_ = other.content_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DemoStrReq Clone() {
-      return new DemoStrReq(this);
+    public PDemoStrReq Clone() {
+      return new PDemoStrReq(this);
     }
 
     /// <summary>Field number for the "content" field.</summary>
@@ -88,11 +88,11 @@ namespace Dcgameprotobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as DemoStrReq);
+      return Equals(other as PDemoStrReq);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DemoStrReq other) {
+    public bool Equals(PDemoStrReq other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -142,7 +142,7 @@ namespace Dcgameprotobuf {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DemoStrReq other) {
+    public void MergeFrom(PDemoStrReq other) {
       if (other == null) {
         return;
       }
@@ -173,11 +173,11 @@ namespace Dcgameprotobuf {
   /// <summary>
   ///2000002
   /// </summary>
-  public sealed partial class DemoStrRes : pb::IMessage<DemoStrRes> {
-    private static readonly pb::MessageParser<DemoStrRes> _parser = new pb::MessageParser<DemoStrRes>(() => new DemoStrRes());
+  public sealed partial class PDemoStrRes : pb::IMessage<PDemoStrRes> {
+    private static readonly pb::MessageParser<PDemoStrRes> _parser = new pb::MessageParser<PDemoStrRes>(() => new PDemoStrRes());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DemoStrRes> Parser { get { return _parser; } }
+    public static pb::MessageParser<PDemoStrRes> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -190,21 +190,21 @@ namespace Dcgameprotobuf {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DemoStrRes() {
+    public PDemoStrRes() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DemoStrRes(DemoStrRes other) : this() {
+    public PDemoStrRes(PDemoStrRes other) : this() {
       content_ = other.content_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DemoStrRes Clone() {
-      return new DemoStrRes(this);
+    public PDemoStrRes Clone() {
+      return new PDemoStrRes(this);
     }
 
     /// <summary>Field number for the "content" field.</summary>
@@ -220,11 +220,11 @@ namespace Dcgameprotobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as DemoStrRes);
+      return Equals(other as PDemoStrRes);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DemoStrRes other) {
+    public bool Equals(PDemoStrRes other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -274,7 +274,7 @@ namespace Dcgameprotobuf {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DemoStrRes other) {
+    public void MergeFrom(PDemoStrRes other) {
       if (other == null) {
         return;
       }

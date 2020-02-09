@@ -7,10 +7,10 @@ namespace DC
     {
         public void ReqRoleList(string userToken, Action<int, ProtoPacket> callback)
         {
-            var roleReq = new RoleReq();
+            var roleReq = new PRoleReq();
             roleReq.UserToken = userToken;
 
-            SysBoxP.NetworkServiceP.Send(roleReq, callback, DCProtocolIds.RoleRes);
+            SysBoxP.NetworkServiceP.Send(roleReq, callback, DCProtocolIds.PRoleRes);
         }
     }
 }

@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 namespace DC
 {
-    public class SelectRoleUI : BaseUI, IListViewFuncs<RoleInfo, SelectRoleRoleItemViewUI>
+    public class SelectRoleUI : BaseUI, IListViewFuncs<PRoleInfo, SelectRoleRoleItemViewUI>
     {
         private SelectRoleUIGen mUIGen;
 
-        private SimpleListView<RoleInfo, SelectRoleRoleItemViewUI> mRoleListView;
+        private SimpleListView<PRoleInfo, SelectRoleRoleItemViewUI> mRoleListView;
 
-        private RoleInfo mRoleInfo;
+        private PRoleInfo mRoleInfo;
 
         public override void Init(params object[] param)
         {
@@ -22,7 +22,7 @@ namespace DC
             mUIGen.roleItemGameObject.SetActive(false);
 
 
-            mRoleListView = new SimpleListView<RoleInfo, SelectRoleRoleItemViewUI>();
+            mRoleListView = new SimpleListView<PRoleInfo, SelectRoleRoleItemViewUI>();
             mRoleListView.Init(this);
             mRoleListView.Create();
 
@@ -47,10 +47,10 @@ namespace DC
                 return;
             }
 
-            var req = new LoginSvrReq();
+            var req = new PLoginSvrReq();
             req.RoleId = curRole.RoleId;
 
-            SysBoxP.NetworkServiceP.Send(req, OnLoginSvrComplete, DCProtocolIds.LoginSvrRes);
+            SysBoxP.NetworkServiceP.Send(req, OnLoginSvrComplete, DCProtocolIds.PLoginSvrRes);
         }
 
         void OnLoginSvrComplete(int id, ProtoPacket proto)
@@ -60,7 +60,7 @@ namespace DC
             Close();
         }
 
-        public void OnSelectRole(RoleInfo role)
+        public void OnSelectRole(PRoleInfo role)
         {
             mRoleInfo = role;
 
@@ -80,7 +80,7 @@ namespace DC
             mUIGen.detailNmeText.text = mRoleInfo.Name;
         }
 
-        public List<RoleInfo> GetDataFunc()
+        public List<PRoleInfo> GetDataFunc()
         {
             return PlayerDataMgr.Instance.GetRoleList();
         }
@@ -96,7 +96,7 @@ namespace DC
             return viewUI;
         }
 
-        public void UpdateItemUiFunc(RoleInfo itemData, SelectRoleRoleItemViewUI roleItemUi)
+        public void UpdateItemUiFunc(PRoleInfo itemData, SelectRoleRoleItemViewUI roleItemUi)
         {
             var viewGen = roleItemUi.ViewGen;
 

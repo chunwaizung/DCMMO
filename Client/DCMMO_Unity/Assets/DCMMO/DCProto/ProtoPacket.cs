@@ -18,15 +18,15 @@
 
         public static ProtoPacket CreateError(int id, int no, string msg)
         {
-            return CreateError(id, no, TxtOp.TxtMsg, msg);
+            return CreateError(id, no, PTxtOp.TxtMsg, msg);
         }
 
-        public static ProtoPacket CreateError(int id, int no, TxtOp op, string msg)
+        public static ProtoPacket CreateError(int id, int no, PTxtOp op, string msg)
         {
             var packet = new ProtoPacket();
             packet.protoId = id;
 
-            var errorRes = new ErrorRes();
+            var errorRes = new PErrorRes();
             errorRes.No = no;
             errorRes.Msg = msg;
             errorRes.OpCode = op;
@@ -67,9 +67,9 @@
             }
         }
 
-        public ErrorRes GetError()
+        public PErrorRes GetError()
         {
-            return (ErrorRes) ProtoObj;
+            return (PErrorRes) ProtoObj;
         }
 
     }

@@ -12,17 +12,17 @@ namespace DC
 
         public string UserToken;
 
-        List<RoleInfo> mRoleList = new List<RoleInfo>();
+        List<PRoleInfo> mRoleList = new List<PRoleInfo>();
 
-        public RoleInfo CurRole;
+        public PRoleInfo CurRole;
 
         protected override void OnInit()
         {
             base.OnInit();
 
-            SysBox.Instance.NetworkServiceP.AddHandler(DCProtocolIds.RoleRes, OnRoleRes);
-            SysBox.Instance.NetworkServiceP.AddHandler(DCProtocolIds.AddRoleRes, OnAddRoleRes);
-            SysBox.Instance.NetworkServiceP.AddHandler(DCProtocolIds.LoginSvrRes, OnLoginSvrRes);
+            SysBox.Instance.NetworkServiceP.AddHandler(DCProtocolIds.PRoleRes, OnRoleRes);
+            SysBox.Instance.NetworkServiceP.AddHandler(DCProtocolIds.PAddRoleRes, OnAddRoleRes);
+            SysBox.Instance.NetworkServiceP.AddHandler(DCProtocolIds.PLoginSvrRes, OnLoginSvrRes);
         }
 
         void OnLoginSvrRes(int id, ProtoPacket proto)
@@ -32,7 +32,7 @@ namespace DC
 
         void OnAddRoleRes(int id, ProtoPacket proto)
         {
-            var roleInfo = (RoleInfo) proto.ProtoObj;
+            var roleInfo = (PRoleInfo) proto.ProtoObj;
             mRoleList.Add(roleInfo);
         }
 
@@ -45,12 +45,12 @@ namespace DC
                 return;
             }
 
-            var roleRes = (RoleRes) protoPkt.ProtoObj;
+            var roleRes = (PRoleRes) protoPkt.ProtoObj;
             mRoleList.Clear();
             mRoleList.AddRange(roleRes.Infos);
         }
 
-        public List<RoleInfo> GetRoleList()
+        public List<PRoleInfo> GetRoleList()
         {
             return mRoleList;
         }

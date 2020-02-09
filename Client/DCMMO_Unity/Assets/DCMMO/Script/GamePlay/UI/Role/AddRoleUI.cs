@@ -12,7 +12,7 @@ namespace DC
     {
         private AddRoleUIGen mAddRoleUiGen;
 
-        private JobType mJob = JobType.Saber;
+        private PJobType mJob = PJobType.Saber;
 
         public override void Init(params object[] param)
         {
@@ -25,7 +25,7 @@ namespace DC
 
         void OnDrop(int index)
         {
-            mJob = (JobType) (index + 1);
+            mJob = (PJobType) (index + 1);
             //update ui with job
             UpdateUi();
         }
@@ -37,10 +37,10 @@ namespace DC
 
         void OnAdd()
         {
-            var addRoleReq = new AddRoleReq();
+            var addRoleReq = new PAddRoleReq();
             addRoleReq.Job = mJob;
             addRoleReq.Name = mAddRoleUiGen.nameInputField.text;
-            SysBoxP.NetworkServiceP.Send(addRoleReq, OnAddRoleRes, DCProtocolIds.AddRoleRes);
+            SysBoxP.NetworkServiceP.Send(addRoleReq, OnAddRoleRes, DCProtocolIds.PAddRoleRes);
         }
 
         void OnAddRoleRes(int id, ProtoPacket proto)
@@ -51,7 +51,7 @@ namespace DC
             
             MsgSys.Send(PlayerEvt.close_select_role_ui);
 
-            var sceneId = ParamsCfgMgr.Instance.GetInt((int)ParamsConfig.BeginnerScene);
+            var sceneId = ParamsCfgMgr.Instance.GetInt((int)PParamsConfig.BeginnerScene);
 
             LoadScene(sceneId);
         }

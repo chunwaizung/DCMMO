@@ -19,9 +19,9 @@ namespace DC
         {
             switch (id)
             {
-                case DCProtocolIds.RoleReq:
+                case DCProtocolIds.PRoleReq:
                     break;
-                case DCProtocolIds.LoginSvrReq:
+                case DCProtocolIds.PLoginSvrReq:
                     break;
             }
         }

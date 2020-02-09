@@ -84,7 +84,7 @@ namespace Dcgameprotobuf
 
         public static ErrorCode CheckError(int id, ProtoPacket pkt)
         {
-            if (pkt.ProtoObj is ErrorRes errorRes)
+            if (pkt.ProtoObj is PErrorRes errorRes)
             {
                 return (ErrorCode)errorRes.No;
             }

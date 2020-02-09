@@ -1,14 +1,14 @@
 syntax="proto3";
 package dcgameprotobuf;
 
-//no = 2000000
+//start_no = 2000000
 
 //2000001
-message DemoStrReq{
+message PDemoStrReq{
     string content = 1;
 }
 
 //2000002
-message DemoStrRes{
+message PDemoStrRes{
     string content = 1;
 }

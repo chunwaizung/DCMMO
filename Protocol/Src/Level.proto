@@ -1,0 +1,18 @@
+syntax="proto3";
+package dcgameprotobuf;
+
+import "Common.proto";
+
+//start_no = 1020000
+
+message PChangeLevelNotify{
+    int32 levelId = 1;
+}
+
+message PSetPosNotify{
+    PVector3Int pos = 1;
+}
+
+message PActorEnterViewNotify{
+    int32 actor = 1;
+}

@@ -1,17 +1,33 @@
 syntax="proto3";
 package dcgameprotobuf;
 
-//startNo = 1000000
+//start_no = 1000000
 
-enum TxtOp{
-    UNIVERSAL = 0;
-    txtMsg = 1;
-    lua = 2;
+enum PTxtOp{
+    TxtMsg = 0;
+    Lua = 1;
 }
 
 //1000001
-message ErrorRes{
+message PErrorRes{
     int32 no = 1;//错误
-    TxtOp opCode = 2;//操作方式
+    PTxtOp opCode = 2;//操作方式
     string msg = 3;//文本，可以当消息，可以当lua脚本
+}
+
+message PVector2Int{
+    int32 x = 1;
+    int32 y = 2;
+}
+
+message PVector3Int{
+    int32 x = 1;
+    int32 y = 2;
+    int32 z = 3;
+}
+
+enum PActorType{
+    Player = 0;
+    Pet = 1;
+    Npc = 2;
 }

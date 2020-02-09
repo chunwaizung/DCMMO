@@ -4,7 +4,7 @@ namespace DC
 {
     public enum ActorType
     {
-        Player,
+        Player = 1,
         Pet,
         Npc,
     }

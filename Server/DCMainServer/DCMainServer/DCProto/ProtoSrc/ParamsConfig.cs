@@ -24,19 +24,19 @@ namespace Dcgameprotobuf {
     static ParamsConfigReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChJQYXJhbXNDb25maWcucHJvdG8SDmRjZ2FtZXByb3RvYnVmKjEKDFBhcmFt",
-            "c0NvbmZpZxINCglVTklWRVJTQUwQABISCg5iZWdpbm5lcl9zY2VuZRABYgZw",
-            "cm90bzM="));
+            "ChJQYXJhbXNDb25maWcucHJvdG8SDmRjZ2FtZXByb3RvYnVmKjUKDVBQYXJh",
+            "bXNDb25maWcSEAoMZW1wdHlfaG9sZGVyEAASEgoOYmVnaW5uZXJfc2NlbmUQ",
+            "AWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Dcgameprotobuf.ParamsConfig), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Dcgameprotobuf.PParamsConfig), }, null, null));
     }
     #endregion
 
   }
   #region Enums
-  public enum ParamsConfig {
-    [pbr::OriginalName("UNIVERSAL")] Universal = 0,
+  public enum PParamsConfig {
+    [pbr::OriginalName("empty_holder")] EmptyHolder = 0,
     [pbr::OriginalName("beginner_scene")] BeginnerScene = 1,
   }
 
