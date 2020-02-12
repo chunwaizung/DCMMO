@@ -11,7 +11,11 @@ namespace DC
         public void HandleAddRoleReq(ClientHandler clientHandler, int id, ProtoPacket packet)
         {
             var roleReq = (PAddRoleReq)packet.ProtoObj;
-            var role = PlayerDB.Instance.CreateRole(clientHandler.User.ID, (int) roleReq.Job, roleReq.Name);
+            var role = PlayerDB.Instance.AddRole(clientHandler.User.ID, (int) roleReq.Job, roleReq.Name);
+            //equip
+            //actor data
+            //task
+
             clientHandler.Role = role;
             var addRoleRes = new PAddRoleRes();
             clientHandler.Send(addRoleRes);
@@ -19,12 +23,12 @@ namespace DC
             NotifyRoleEnterWorld(clientHandler);
         }
 
-        private User CheckUser(string userToken)
+        private DBUser CheckUser(string userToken)
         {
             var user = PlayerDB.Instance.GetUser(userToken);
             if (null == user)
             {
-                user = PlayerDB.Instance.CreateUser(userToken);
+                user = PlayerDB.Instance.AddUser(userToken);
             }
             return user;
         }
@@ -65,7 +69,23 @@ namespace DC
 
         void NotifyRoleEnterWorld(ClientHandler clientHandler)
         {
+            var roleId = clientHandler.Role.id;
 
+            var enterWorldNotify = new PRoleEnterWorldNotify();
+            var actorInfo = new PActorInfo();
+            actorInfo.ActorId = roleId;
+            actorInfo.ActorName = clientHandler.Role.name;
+            actorInfo.ActorType = PActorType.Player;
+
+            var actorInfoPos = new PVector3Int();
+            actorInfoPos.X = clientHandler.Role.lastPosX;
+            actorInfoPos.Z = clientHandler.Role.lastPosY;
+            actorInfo.Pos = actorInfoPos;
+
+            actorInfo.ActorData = DBToPUtil.DRoleDataToP(PlayerDB.Instance.GetRoleData(roleId));
+
+            enterWorldNotify.PlayerActor = actorInfo;
+            clientHandler.Send(enterWorldNotify);
         }
 
         void NotifyRoleExitWorld(ClientHandler clientHandler)

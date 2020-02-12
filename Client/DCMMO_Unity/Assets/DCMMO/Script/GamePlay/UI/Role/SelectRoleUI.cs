@@ -50,7 +50,7 @@ namespace DC
             var req = new PLoginSvrReq();
             req.RoleId = curRole.RoleId;
 
-            SysBoxP.NetworkServiceP.Send(req, OnLoginSvrComplete, DCProtocolIds.PLoginSvrRes);
+            SysBoxP.NetworkServiceP.SendAutoRes(req, OnLoginSvrComplete);
         }
 
         void OnLoginSvrComplete(int id, ProtoPacket proto)

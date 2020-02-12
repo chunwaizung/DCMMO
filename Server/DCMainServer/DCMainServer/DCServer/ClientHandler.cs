@@ -14,9 +14,9 @@ namespace DC.Net
     {
         public NetworkServer Server;
 
-        public User User;
+        public DBUser User;
 
-        public Role Role;
+        public DBRole Role;
 
         private NetChannel mChannel;
 
@@ -53,12 +53,12 @@ namespace DC.Net
             mChannel.Send(SendBuf.From(DCGameProtocol.GetIntBuf(id)), SendBuf.From(content));
         }
 
-        public void Send(IMessage req)
+        public void Send(IMessage ms)
         {
-            var id = DCGameProtocol.GetId(req);
+            var id = DCGameProtocol.GetId(ms);
             if (id != 0)
             {
-                Send(id, req.ToByteArray());
+                Send(id, ms.ToByteArray());
             }
         }
 

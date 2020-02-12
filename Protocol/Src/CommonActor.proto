@@ -1,0 +1,18 @@
+syntax="proto3";
+package dcgameprotobuf;
+
+enum PActorDataType{
+    max_hp = 0;
+    max_mp = 1;
+    mp = 2;
+    hp = 3;
+    physic_atk = 4;
+    magic_atk = 5;
+    physic_def = 6;
+    magic_atk = 7;
+}
+
+message PActorData{
+    int32 actorHp = 1;
+    int32 actorMp = 2;
+}

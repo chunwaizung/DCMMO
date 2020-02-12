@@ -1,4 +1,8 @@
-﻿using SQLite;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using SQLite;
 
 namespace DC
 {
@@ -31,5 +35,25 @@ namespace DC
         }
 
         protected SQLiteConnection Con => DCDB.Instance.GetCon();
+
+        public T GetSingle<T>(Expression<Func<T, bool>> func) where T : new()
+        {
+            var q = Con.Table<T>().Where(func);
+
+            if (q.Any()) return q.First();
+
+            return default;
+        }
+
+        public List<T> GetList<T>(Expression<Func<T, bool>> func) where T :new()
+        {
+            var q = Con.Table<T>().Where(func);
+            return q.ToList();
+        }
+
+        public void Save<T>(T obj) where T : new()
+        {
+            Con.Insert(obj);
+        }
     }
 }

@@ -27,7 +27,6 @@ namespace DC
 
         void OnLoginSvrRes(int id, ProtoPacket proto)
         {
-            
         }
 
         void OnAddRoleRes(int id, ProtoPacket proto)

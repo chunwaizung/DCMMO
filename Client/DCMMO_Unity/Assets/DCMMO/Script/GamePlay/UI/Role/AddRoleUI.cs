@@ -40,7 +40,7 @@ namespace DC
             var addRoleReq = new PAddRoleReq();
             addRoleReq.Job = mJob;
             addRoleReq.Name = mAddRoleUiGen.nameInputField.text;
-            SysBoxP.NetworkServiceP.Send(addRoleReq, OnAddRoleRes, DCProtocolIds.PAddRoleRes);
+            SysBoxP.NetworkServiceP.SendAutoRes(addRoleReq, OnAddRoleRes);
         }
 
         void OnAddRoleRes(int id, ProtoPacket proto)

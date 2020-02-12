@@ -31,7 +31,7 @@ namespace DC
 
         public void TestQuery()
         {
-            mCon.Table<Role>().Where(r => r.user_id == 1);
+            mCon.Table<DBRole>().Where(r => r.user_id == 1);
         }
 
         public bool Execute(string sql)
@@ -43,6 +43,10 @@ namespace DC
             return true;
         }
 
+        public void Save<T>(T obj) where T : new()
+        {
+            GetCon().Insert(obj);
+        }
     }
 
 }

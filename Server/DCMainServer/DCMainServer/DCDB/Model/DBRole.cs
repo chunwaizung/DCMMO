@@ -3,7 +3,7 @@
 namespace DC.Model
 {
     [ModelCls]
-    public class Role
+    public class DBRole
     {
         [PrimaryKey,AutoIncrement]
         public int id { get; set; }
@@ -14,6 +14,11 @@ namespace DC.Model
         public int job_type { get; set; }
 
         public int level { get; set; }
+
+        /// <summary>
+        /// 当前的经验，每次升级置0
+        /// </summary>
+        public long exp { get; set; }
 
         public string name { get; set; }
 

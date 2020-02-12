@@ -31,3 +31,11 @@ enum PActorType{
     Pet = 1;
     Npc = 2;
 }
+
+enum PTaskState{
+    unaccepted = 0;
+    accepted = 1;
+    doing = 2;
+    finished = 3;
+    got_award = 4;
+}

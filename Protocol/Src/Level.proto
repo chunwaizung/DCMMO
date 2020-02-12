@@ -2,17 +2,45 @@ syntax="proto3";
 package dcgameprotobuf;
 
 import "Common.proto";
+import "CommonActor.proto";
 
 //start_no = 1020000
 
+message PActorInfo{
+    int32 actorId = 1;
+    PActorType actorType = 2;
+    string actorName = 3;
+    PActorData actorData = 4;
+    PVector3Int pos = 5;
+}
+
+//换关卡
+//1020001
 message PChangeLevelNotify{
     int32 levelId = 1;
 }
 
+//设置actor位置
+//1020002
 message PSetPosNotify{
-    PVector3Int pos = 1;
+    int32 actorId = 1;
+    PVector3Int pos = 2;
 }
 
+//actor进入视野
+//1020003
 message PActorEnterViewNotify{
-    int32 actor = 1;
+    repeated PActorInfo actorInfos = 1;
+}
+
+//actor离开视野
+//1020004
+message PActorLeaveViewNotify{
+    repeated int32 actorIds = 1;
+}
+
+//创建玩家
+//1020005
+message PRoleEnterWorldNotify{
+    PActorInfo playerActor = 1;
 }

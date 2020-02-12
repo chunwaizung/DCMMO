@@ -116,20 +116,23 @@ namespace DC
         {
             //todo check network
 
-            //previous req is override, notify error
-            if (mIdToOnceHandler.TryGetValue(resId, out var delegateObj))
+            if (resId != 0)
             {
-                var error = ProtoPacket.CreateError(resId, (int) ErrorCode.req_override, string.Empty);
-                if (delegateObj != null)
+                //previous req is override, notify error
+                if (mIdToOnceHandler.TryGetValue(resId, out var delegateObj))
                 {
-                    delegateObj.DynamicInvoke(resId, error);
+                    var error = ProtoPacket.CreateError(resId, (int)ErrorCode.req_override, string.Empty);
+                    if (delegateObj != null)
+                    {
+                        delegateObj.DynamicInvoke(resId, error);
+                    }
+                    mIdToOnceHandler.Remove(resId);
                 }
-                mIdToOnceHandler.Remove(resId);
-            }
 
-            if (callback != null)
-            {
-                AddToHandler(resId, callback, mIdToOnceHandler);
+                if (callback != null)
+                {
+                    AddToHandler(resId, callback, mIdToOnceHandler);
+                }
             }
 
             mChannel.Send(SendBuf.From(DCGameProtocol.GetIntBuf(reqId)), SendBuf.From(content));
@@ -141,6 +144,24 @@ namespace DC
             if (id != 0)
             {
                 Send(id, resId, req.ToByteArray(), callback);
+            }
+        }
+
+        public void Send(IMessage req, Action<int, ProtoPacket> callback)
+        {
+            var id = DCGameProtocol.GetId(req);
+            if (id != 0)
+            {
+                Send(id, 0, req.ToByteArray(), callback);
+            }
+        }
+
+        public void SendAutoRes(IMessage req, Action<int, ProtoPacket> callback)
+        {
+            var id = DCGameProtocol.GetId(req);
+            if (id != 0)
+            {
+                Send(id, id + 1, req.ToByteArray(), callback);
             }
         }
 

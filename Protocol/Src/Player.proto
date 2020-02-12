@@ -43,6 +43,7 @@ message PLoginSvrReq{
 //1010004
 message PLoginSvrRes{
     bool error = 1;
+
 }
 
 //添加角色

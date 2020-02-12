@@ -1,40 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using DC.Model;
 
 namespace DC
 {
     public class PlayerDB : BaseDB<PlayerDB>
     {
-        public User CreateUser(string token)
+        public DBUser AddUser(string token)
         {
-            var user = new User();
+            var user = new DBUser();
             user.CreatedTime = DateTime.UtcNow;
             user.Token = token;
             Con.Insert(user);
             return user;
         }
 
-        public User GetUser(string token)
+        public DBUser GetUser(string token)
         {
-            var users = Con.Table<User>().Where(item=>item.Token.Equals(token));
-            if (users == null || !users.Any())
-            {
-                return null;
-            }
-
-            return users.First();
+            return GetSingle<DBUser>(item => item.Token.Equals(token));
         }
 
-        public List<Role> GetRoles(long user_id)
+        public List<DBRole> GetRoles(long user_id)
         {
-            return Con.Table<Role>().Where(item => item.user_id == user_id).ToList();
+            return GetList<DBRole>(item => item.user_id == user_id);
         }
 
-        public Role CreateRole(long user_id, int job, string name)
+        public DBRole AddRole(long user_id, int job, string name)
         {
-            var role = new Role();
+            var role = new DBRole();
             role.user_id = user_id;
             role.job_type = job;
             role.name = name;
@@ -43,15 +38,19 @@ namespace DC
             return role;
         }
 
-        public Role GetRole(int role_id)
+        public DBRole GetRole(int role_id)
         {
-            var roles = Con.Table<Role>().Where(item => item.id == role_id);
-            if (roles.Any())
-            {
-                return roles.First();
-            }
+            return GetSingle<DBRole>(item => item.id == role_id);
+        }
 
-            return null;
+        public DBRoleData GetRoleData(int role_id)
+        {
+            return GetSingle<DBRoleData>(item => item.role_id == role_id);
+        }
+
+        public void SaveRoleData(DBRoleData data)
+        {
+            Con.Insert(data);
         }
     }
 }
