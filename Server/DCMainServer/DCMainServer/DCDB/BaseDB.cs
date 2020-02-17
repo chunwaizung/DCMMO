@@ -36,22 +36,22 @@ namespace DC
 
         protected SQLiteConnection Con => DCDB.Instance.GetCon();
 
-        public T GetSingle<T>(Expression<Func<T, bool>> func) where T : new()
+        public M GetSingle<M>(Expression<Func<M, bool>> func) where M : new()
         {
-            var q = Con.Table<T>().Where(func);
+            var q = Con.Table<M>().Where(func);
 
             if (q.Any()) return q.First();
 
             return default;
         }
 
-        public List<T> GetList<T>(Expression<Func<T, bool>> func) where T :new()
+        public List<M> GetList<M>(Expression<Func<M, bool>> func) where M : new()
         {
-            var q = Con.Table<T>().Where(func);
+            var q = Con.Table<M>().Where(func);
             return q.ToList();
         }
 
-        public void Save<T>(T obj) where T : new()
+        public void Save<M>(M obj) where M : new()
         {
             Con.Insert(obj);
         }

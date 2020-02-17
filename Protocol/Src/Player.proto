@@ -8,16 +8,23 @@ package dcgameprotobuf;
 通过token获取角色信息
 */
 
-//请求角色列表
-//1010001
-message PRoleReq {
-    string userToken = 1;
-}
-
 enum PJobType{
     Saber = 0;
     Magic = 1;
     Defender = 2;
+}
+
+enum PEquipType{
+    Weapon = 0;
+    Helmet = 1;
+    Cloth = 2;
+    Shoe = 3;
+}
+
+//请求角色列表
+//1010001
+message PRoleReq {
+    string userToken = 1;
 }
 
 message PRoleInfo{
@@ -59,3 +66,4 @@ message PAddRoleRes{
     bool error = 1;
     PRoleInfo info = 2;
 }
+

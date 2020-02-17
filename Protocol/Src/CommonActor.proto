@@ -9,10 +9,10 @@ enum PActorDataType{
     physic_atk = 4;
     magic_atk = 5;
     physic_def = 6;
-    magic_atk = 7;
+    magic_def = 7;
 }
 
 message PActorData{
-    int32 actorHp = 1;
-    int32 actorMp = 2;
+    int32 hp = 1;
+    int32 mp = 2;
 }

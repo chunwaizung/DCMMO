@@ -7,11 +7,14 @@ namespace DC
     {
         public static PActorData DRoleDataToP(DBRoleData dbData)
         {
-            return new PActorData
-            {
-                ActorMp = dbData.mp,
-                ActorHp = dbData.hp,
-            };
+            var pdata = new PActorData();
+
+            if (null == dbData) return pdata;
+
+            pdata.Hp = dbData.hp;
+            pdata.Mp = dbData.mp;
+
+            return pdata;
         }
     }
 }

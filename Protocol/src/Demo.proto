@@ -12,3 +12,18 @@ message PDemoStrReq{
 message PDemoStrRes{
     string content = 1;
 }
+
+message PTestMap{
+    map<int32, int32> data = 1;
+}
+
+message PDemoCls{
+    int32 a = 1;
+    string b = 2;
+}
+
+//2000003
+message PTestDemoClsReq{
+    int32 f0 = 1;
+    PDemoCls f1 = 2;
+}

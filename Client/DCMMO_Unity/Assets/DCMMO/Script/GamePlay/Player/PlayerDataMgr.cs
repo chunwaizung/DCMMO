@@ -23,10 +23,22 @@ namespace DC
             SysBox.Instance.NetworkServiceP.AddHandler(DCProtocolIds.PRoleRes, OnRoleRes);
             SysBox.Instance.NetworkServiceP.AddHandler(DCProtocolIds.PAddRoleRes, OnAddRoleRes);
             SysBox.Instance.NetworkServiceP.AddHandler(DCProtocolIds.PLoginSvrRes, OnLoginSvrRes);
+            SysBox.Instance.NetworkServiceP.AddHandler(DCProtocolIds.PRoleEnterWorldNotify, OnPRoleEnterWorldNotify);
+        }
+
+        void OnPRoleEnterWorldNotify(int id, ProtoPacket proto)
+        {
+            //create role model and load scene
+            var notify = (PRoleEnterWorldNotify) proto.ProtoObj;
+            var actorInfo = notify.PlayerActor;
+            
+            var actor = SysBox.Instance.ActorSysP.CreateActor(actorInfo);
+
         }
 
         void OnLoginSvrRes(int id, ProtoPacket proto)
         {
+            
         }
 
         void OnAddRoleRes(int id, ProtoPacket proto)

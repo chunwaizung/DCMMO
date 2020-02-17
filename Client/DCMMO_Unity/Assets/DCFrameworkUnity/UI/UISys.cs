@@ -28,7 +28,15 @@ namespace DC
             {
                 if (null == _mUiRoot)
                 {
-                    _mUiRoot = GameObject.Find("UIRoot").transform.Find("UIRootCanvas");
+                    var uiRoot = GameObject.Find("UIRoot");
+                    if (uiRoot != null)
+                    {
+                        _mUiRoot = uiRoot.transform.Find("UIRootCanvas");
+                    }
+                    else
+                    {
+                        DCLog.Err("ui root is null!!!");
+                    }
                 }
 
                 return _mUiRoot;

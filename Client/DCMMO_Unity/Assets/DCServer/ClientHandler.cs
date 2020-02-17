@@ -41,6 +41,16 @@ namespace DC.Net
         {
             //首次连接第一个协议必须是user token
 
+            var protoPacket = ProtoPacket.FromRecvBuf(packet.Bytes, 0, packet.Length);
+            if (protoPacket.ProtoObj is PTestDemoClsReq req)
+            {
+                var f1 = req.F1;
+                if (f1 == null)
+                {
+                    DCLog.Log("default is null");
+                }
+            }
+
             //echo to client
             mChannel.Send(
                 SendBuf.From(Encoding.UTF8.GetBytes("echo ")),

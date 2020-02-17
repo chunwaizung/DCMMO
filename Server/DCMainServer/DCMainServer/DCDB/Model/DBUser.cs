@@ -4,7 +4,7 @@ using SQLite;
 namespace DC.Model
 {
     [ModelCls]
-    public class DBUser
+    public class DBUser : BaseModel
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }

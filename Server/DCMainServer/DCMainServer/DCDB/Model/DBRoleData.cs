@@ -3,7 +3,7 @@
 namespace DC.Model
 {
     [ModelCls]
-    public class DBRoleData
+    public class DBRoleData : BaseModel
     {
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }

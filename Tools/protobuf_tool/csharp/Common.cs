@@ -29,11 +29,12 @@ namespace Dcgameprotobuf {
             "VHh0T3ASCwoDbXNnGAMgASgJIiMKC1BWZWN0b3IySW50EgkKAXgYASABKAUS",
             "CQoBeRgCIAEoBSIuCgtQVmVjdG9yM0ludBIJCgF4GAEgASgFEgkKAXkYAiAB",
             "KAUSCQoBehgDIAEoBSodCgZQVHh0T3ASCgoGVHh0TXNnEAASBwoDTHVhEAEq",
-            "KgoKUEFjdG9yVHlwZRIKCgZQbGF5ZXIQABIHCgNQZXQQARIHCgNOcGMQAmIG",
-            "cHJvdG8z"));
+            "KgoKUEFjdG9yVHlwZRIKCgZQbGF5ZXIQABIHCgNQZXQQARIHCgNOcGMQAipS",
+            "CgpQVGFza1N0YXRlEg4KCnVuYWNjZXB0ZWQQABIMCghhY2NlcHRlZBABEgkK",
+            "BWRvaW5nEAISDAoIZmluaXNoZWQQAxINCglnb3RfYXdhcmQQBGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Dcgameprotobuf.PTxtOp), typeof(global::Dcgameprotobuf.PActorType), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Dcgameprotobuf.PTxtOp), typeof(global::Dcgameprotobuf.PActorType), typeof(global::Dcgameprotobuf.PTaskState), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PErrorRes), global::Dcgameprotobuf.PErrorRes.Parser, new[]{ "No", "OpCode", "Msg" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PVector2Int), global::Dcgameprotobuf.PVector2Int.Parser, new[]{ "X", "Y" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PVector3Int), global::Dcgameprotobuf.PVector3Int.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null)
@@ -52,6 +53,14 @@ namespace Dcgameprotobuf {
     [pbr::OriginalName("Player")] Player = 0,
     [pbr::OriginalName("Pet")] Pet = 1,
     [pbr::OriginalName("Npc")] Npc = 2,
+  }
+
+  public enum PTaskState {
+    [pbr::OriginalName("unaccepted")] Unaccepted = 0,
+    [pbr::OriginalName("accepted")] Accepted = 1,
+    [pbr::OriginalName("doing")] Doing = 2,
+    [pbr::OriginalName("finished")] Finished = 3,
+    [pbr::OriginalName("got_award")] GotAward = 4,
   }
 
   #endregion

@@ -24,18 +24,34 @@ namespace Dcgameprotobuf {
     static CommonActorReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChFDb21tb25BY3Rvci5wcm90bxIOZGNnYW1lcHJvdG9idWYiLgoKUEFjdG9y",
-            "RGF0YRIPCgdhY3RvckhwGAEgASgFEg8KB2FjdG9yTXAYAiABKAViBnByb3Rv",
-            "Mw=="));
+            "ChFDb21tb25BY3Rvci5wcm90bxIOZGNnYW1lcHJvdG9idWYiJAoKUEFjdG9y",
+            "RGF0YRIKCgJocBgBIAEoBRIKCgJtcBgCIAEoBSp2Cg5QQWN0b3JEYXRhVHlw",
+            "ZRIKCgZtYXhfaHAQABIKCgZtYXhfbXAQARIGCgJtcBACEgYKAmhwEAMSDgoK",
+            "cGh5c2ljX2F0axAEEg0KCW1hZ2ljX2F0axAFEg4KCnBoeXNpY19kZWYQBhIN",
+            "CgltYWdpY19kZWYQB2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PActorData), global::Dcgameprotobuf.PActorData.Parser, new[]{ "ActorHp", "ActorMp" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Dcgameprotobuf.PActorDataType), }, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PActorData), global::Dcgameprotobuf.PActorData.Parser, new[]{ "Hp", "Mp" }, null, null, null, null)
           }));
     }
     #endregion
 
   }
+  #region Enums
+  public enum PActorDataType {
+    [pbr::OriginalName("max_hp")] MaxHp = 0,
+    [pbr::OriginalName("max_mp")] MaxMp = 1,
+    [pbr::OriginalName("mp")] Mp = 2,
+    [pbr::OriginalName("hp")] Hp = 3,
+    [pbr::OriginalName("physic_atk")] PhysicAtk = 4,
+    [pbr::OriginalName("magic_atk")] MagicAtk = 5,
+    [pbr::OriginalName("physic_def")] PhysicDef = 6,
+    [pbr::OriginalName("magic_def")] MagicDef = 7,
+  }
+
+  #endregion
+
   #region Messages
   public sealed partial class PActorData : pb::IMessage<PActorData> {
     private static readonly pb::MessageParser<PActorData> _parser = new pb::MessageParser<PActorData>(() => new PActorData());
@@ -62,8 +78,8 @@ namespace Dcgameprotobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PActorData(PActorData other) : this() {
-      actorHp_ = other.actorHp_;
-      actorMp_ = other.actorMp_;
+      hp_ = other.hp_;
+      mp_ = other.mp_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -72,25 +88,25 @@ namespace Dcgameprotobuf {
       return new PActorData(this);
     }
 
-    /// <summary>Field number for the "actorHp" field.</summary>
-    public const int ActorHpFieldNumber = 1;
-    private int actorHp_;
+    /// <summary>Field number for the "hp" field.</summary>
+    public const int HpFieldNumber = 1;
+    private int hp_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ActorHp {
-      get { return actorHp_; }
+    public int Hp {
+      get { return hp_; }
       set {
-        actorHp_ = value;
+        hp_ = value;
       }
     }
 
-    /// <summary>Field number for the "actorMp" field.</summary>
-    public const int ActorMpFieldNumber = 2;
-    private int actorMp_;
+    /// <summary>Field number for the "mp" field.</summary>
+    public const int MpFieldNumber = 2;
+    private int mp_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ActorMp {
-      get { return actorMp_; }
+    public int Mp {
+      get { return mp_; }
       set {
-        actorMp_ = value;
+        mp_ = value;
       }
     }
 
@@ -107,16 +123,16 @@ namespace Dcgameprotobuf {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ActorHp != other.ActorHp) return false;
-      if (ActorMp != other.ActorMp) return false;
+      if (Hp != other.Hp) return false;
+      if (Mp != other.Mp) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ActorHp != 0) hash ^= ActorHp.GetHashCode();
-      if (ActorMp != 0) hash ^= ActorMp.GetHashCode();
+      if (Hp != 0) hash ^= Hp.GetHashCode();
+      if (Mp != 0) hash ^= Mp.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -130,13 +146,13 @@ namespace Dcgameprotobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (ActorHp != 0) {
+      if (Hp != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ActorHp);
+        output.WriteInt32(Hp);
       }
-      if (ActorMp != 0) {
+      if (Mp != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(ActorMp);
+        output.WriteInt32(Mp);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -146,11 +162,11 @@ namespace Dcgameprotobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ActorHp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ActorHp);
+      if (Hp != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Hp);
       }
-      if (ActorMp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ActorMp);
+      if (Mp != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Mp);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -163,11 +179,11 @@ namespace Dcgameprotobuf {
       if (other == null) {
         return;
       }
-      if (other.ActorHp != 0) {
-        ActorHp = other.ActorHp;
+      if (other.Hp != 0) {
+        Hp = other.Hp;
       }
-      if (other.ActorMp != 0) {
-        ActorMp = other.ActorMp;
+      if (other.Mp != 0) {
+        Mp = other.Mp;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -181,11 +197,11 @@ namespace Dcgameprotobuf {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ActorHp = input.ReadInt32();
+            Hp = input.ReadInt32();
             break;
           }
           case 16: {
-            ActorMp = input.ReadInt32();
+            Mp = input.ReadInt32();
             break;
           }
         }

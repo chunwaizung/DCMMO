@@ -3,15 +3,31 @@ package dcgameprotobuf;
 
 import "Common.proto";
 import "CommonActor.proto";
+import "Player.proto";
 
 //start_no = 1020000
 
-message PActorInfo{
+message PPlayerActorInfo{
     int32 actorId = 1;
-    PActorType actorType = 2;
-    string actorName = 3;
-    PActorData actorData = 4;
-    PVector3Int pos = 5;
+    string actorName = 2;
+    PActorData actorData = 3;
+    PVector3Int pos = 4;
+    PJobType job = 5;
+    int32 level = 6;
+}
+
+message PPetActorInfo{
+    int32 actorId = 1;
+    int32 petCfgId = 2;
+    PActorData actorData = 3;
+    PVector3Int pos = 4;
+}
+
+message PNpcActorInfo{
+    int32 actorId = 1;
+    int32 npcCfgId = 2;
+    PActorData actorData = 3;
+    PVector3Int pos = 4;
 }
 
 //换关卡
@@ -27,13 +43,13 @@ message PSetPosNotify{
     PVector3Int pos = 2;
 }
 
-//actor进入视野
+//player进入视野
 //1020003
-message PActorEnterViewNotify{
-    repeated PActorInfo actorInfos = 1;
+message PActorPlayerEnterViewNotify{
+    repeated PPlayerActorInfo actorInfos = 1;
 }
 
-//actor离开视野
+//actor离开视野，包括player、npc、pet
 //1020004
 message PActorLeaveViewNotify{
     repeated int32 actorIds = 1;
@@ -42,5 +58,17 @@ message PActorLeaveViewNotify{
 //创建玩家
 //1020005
 message PRoleEnterWorldNotify{
-    PActorInfo playerActor = 1;
+    PPlayerActorInfo playerActor = 1;
+}
+
+//pet进入视野
+//1020006
+message PActorPetEnterViewNotify{
+    repeated PPetActorInfo actorInfos = 1;
+}
+
+//npc进入视野
+//1020007
+message PActorNpcEnterViewNotify{
+    repeated PNpcActorInfo actorInfos = 1;
 }

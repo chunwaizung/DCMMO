@@ -3,7 +3,7 @@
 namespace DC.Model
 {
     [ModelCls]
-    public class DBTask
+    public class DBTask : BaseModel
     {
         [PrimaryKey,AutoIncrement]
         public int id { get; set; }

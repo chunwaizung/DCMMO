@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Dcgameprotobuf;
 
 namespace DC
 {
@@ -9,11 +10,11 @@ namespace DC
         Npc,
     }
 
-    public class Actor : GamePlayBehaviour
+    public abstract class Actor : GamePlayBehaviour
     {
         List<BaseActorCmpt> mActorCmpts = new List<BaseActorCmpt>();
 
-        
+        public abstract PActorType GetActorType();
     }
 
 }

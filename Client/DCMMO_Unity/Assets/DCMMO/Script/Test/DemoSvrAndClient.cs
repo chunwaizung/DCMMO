@@ -1,6 +1,8 @@
 ﻿using System.Net.Sockets;
 using System.Text;
 using DC.Net;
+using Dcgameprotobuf;
+using Google.Protobuf;
 using UnityEngine;
 
 namespace DC
@@ -35,7 +37,12 @@ namespace DC
 
         public void OnSend()
         {
-            mChannel.Send(Encoding.UTF8.GetBytes(mSendStr));
+            var req = new PTestDemoClsReq();
+            var reqId = DCGameProtocol.GetId(req);
+            var content = req.ToByteArray();
+
+            mChannel.Send(SendBuf.From(DCGameProtocol.GetIntBuf(reqId)), SendBuf.From(content));
+//            mChannel.Send(Encoding.UTF8.GetBytes(mSendStr));
         }
 
         void OnReceive(Packet packet)

@@ -1,4 +1,5 @@
-﻿using DC.Model;
+﻿using System.Collections.Generic;
+using DC.Model;
 using DC.Net;
 using Dcgameprotobuf;
 
@@ -13,7 +14,12 @@ namespace DC
             var roleReq = (PAddRoleReq)packet.ProtoObj;
             var role = PlayerDB.Instance.AddRole(clientHandler.User.ID, (int) roleReq.Job, roleReq.Name);
             //equip
+            
             //actor data
+            var actorData = new PActorData();
+            var jobConfigDefine = JobCfgMgr.Instance.Get(role.job_type, role.level);
+            actorData.Hp = jobConfigDefine.MaxHp;
+            actorData.Hp = jobConfigDefine.MaxMp;
             //task
 
             clientHandler.Role = role;
@@ -66,26 +72,32 @@ namespace DC
             NotifyRoleEnterWorld(clientHandler);
         }
 
-
         void NotifyRoleEnterWorld(ClientHandler clientHandler)
         {
-            var roleId = clientHandler.Role.id;
+            var role = clientHandler.Role;
 
             var enterWorldNotify = new PRoleEnterWorldNotify();
-            var actorInfo = new PActorInfo();
-            actorInfo.ActorId = roleId;
+            var actorInfo = new PPlayerActorInfo();
+            actorInfo.ActorId = role.id;
             actorInfo.ActorName = clientHandler.Role.name;
-            actorInfo.ActorType = PActorType.Player;
+                
+            actorInfo.ActorData = DBToPUtil.DRoleDataToP(PlayerDB.Instance.GetRoleData(role.id));
 
             var actorInfoPos = new PVector3Int();
             actorInfoPos.X = clientHandler.Role.lastPosX;
             actorInfoPos.Z = clientHandler.Role.lastPosY;
             actorInfo.Pos = actorInfoPos;
 
-            actorInfo.ActorData = DBToPUtil.DRoleDataToP(PlayerDB.Instance.GetRoleData(roleId));
+            actorInfo.Job = (PJobType)role.job_type;
+            actorInfo.Level = role.level;
 
             enterWorldNotify.PlayerActor = actorInfo;
             clientHandler.Send(enterWorldNotify);
+
+            //scene and level
+            var changeLevelNotify = new PChangeLevelNotify();
+            changeLevelNotify.LevelId = clientHandler.Role.lastLevelId;
+            clientHandler.Send(changeLevelNotify);
         }
 
         void NotifyRoleExitWorld(ClientHandler clientHandler)

@@ -146,10 +146,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5446600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34d0d9024b7328c449f4736ae1486253, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d53e9f665c4f904494c7af02c4422d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mSendStr: client msg
+  mSendStr: demo
 --- !u!4 &5446602
 Transform:
   m_ObjectHideFlags: 0

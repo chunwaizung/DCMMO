@@ -25,38 +25,53 @@ namespace Dcgameprotobuf {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CgtMZXZlbC5wcm90bxIOZGNnYW1lcHJvdG9idWYaDENvbW1vbi5wcm90bxoR",
-            "Q29tbW9uQWN0b3IucHJvdG8iuAEKClBBY3RvckluZm8SDwoHYWN0b3JJZBgB",
-            "IAEoBRItCglhY3RvclR5cGUYAiABKA4yGi5kY2dhbWVwcm90b2J1Zi5QQWN0",
-            "b3JUeXBlEhEKCWFjdG9yTmFtZRgDIAEoCRItCglhY3RvckRhdGEYBCABKAsy",
-            "Gi5kY2dhbWVwcm90b2J1Zi5QQWN0b3JEYXRhEigKA3BvcxgFIAEoCzIbLmRj",
-            "Z2FtZXByb3RvYnVmLlBWZWN0b3IzSW50IiUKElBDaGFuZ2VMZXZlbE5vdGlm",
-            "eRIPCgdsZXZlbElkGAEgASgFIkoKDVBTZXRQb3NOb3RpZnkSDwoHYWN0b3JJ",
-            "ZBgBIAEoBRIoCgNwb3MYAiABKAsyGy5kY2dhbWVwcm90b2J1Zi5QVmVjdG9y",
-            "M0ludCJHChVQQWN0b3JFbnRlclZpZXdOb3RpZnkSLgoKYWN0b3JJbmZvcxgB",
-            "IAMoCzIaLmRjZ2FtZXByb3RvYnVmLlBBY3RvckluZm8iKQoVUEFjdG9yTGVh",
-            "dmVWaWV3Tm90aWZ5EhAKCGFjdG9ySWRzGAEgAygFIkgKFVBSb2xlRW50ZXJX",
-            "b3JsZE5vdGlmeRIvCgtwbGF5ZXJBY3RvchgBIAEoCzIaLmRjZ2FtZXByb3Rv",
-            "YnVmLlBBY3RvckluZm9iBnByb3RvMw=="));
+            "Q29tbW9uQWN0b3IucHJvdG8aDFBsYXllci5wcm90byLFAQoQUFBsYXllckFj",
+            "dG9ySW5mbxIPCgdhY3RvcklkGAEgASgFEhEKCWFjdG9yTmFtZRgCIAEoCRIt",
+            "CglhY3RvckRhdGEYAyABKAsyGi5kY2dhbWVwcm90b2J1Zi5QQWN0b3JEYXRh",
+            "EigKA3BvcxgEIAEoCzIbLmRjZ2FtZXByb3RvYnVmLlBWZWN0b3IzSW50EiUK",
+            "A2pvYhgFIAEoDjIYLmRjZ2FtZXByb3RvYnVmLlBKb2JUeXBlEg0KBWxldmVs",
+            "GAYgASgFIosBCg1QUGV0QWN0b3JJbmZvEg8KB2FjdG9ySWQYASABKAUSEAoI",
+            "cGV0Q2ZnSWQYAiABKAUSLQoJYWN0b3JEYXRhGAMgASgLMhouZGNnYW1lcHJv",
+            "dG9idWYuUEFjdG9yRGF0YRIoCgNwb3MYBCABKAsyGy5kY2dhbWVwcm90b2J1",
+            "Zi5QVmVjdG9yM0ludCKLAQoNUE5wY0FjdG9ySW5mbxIPCgdhY3RvcklkGAEg",
+            "ASgFEhAKCG5wY0NmZ0lkGAIgASgFEi0KCWFjdG9yRGF0YRgDIAEoCzIaLmRj",
+            "Z2FtZXByb3RvYnVmLlBBY3RvckRhdGESKAoDcG9zGAQgASgLMhsuZGNnYW1l",
+            "cHJvdG9idWYuUFZlY3RvcjNJbnQiJQoSUENoYW5nZUxldmVsTm90aWZ5Eg8K",
+            "B2xldmVsSWQYASABKAUiSgoNUFNldFBvc05vdGlmeRIPCgdhY3RvcklkGAEg",
+            "ASgFEigKA3BvcxgCIAEoCzIbLmRjZ2FtZXByb3RvYnVmLlBWZWN0b3IzSW50",
+            "IlMKG1BBY3RvclBsYXllckVudGVyVmlld05vdGlmeRI0CgphY3RvckluZm9z",
+            "GAEgAygLMiAuZGNnYW1lcHJvdG9idWYuUFBsYXllckFjdG9ySW5mbyIpChVQ",
+            "QWN0b3JMZWF2ZVZpZXdOb3RpZnkSEAoIYWN0b3JJZHMYASADKAUiTgoVUFJv",
+            "bGVFbnRlcldvcmxkTm90aWZ5EjUKC3BsYXllckFjdG9yGAEgASgLMiAuZGNn",
+            "YW1lcHJvdG9idWYuUFBsYXllckFjdG9ySW5mbyJNChhQQWN0b3JQZXRFbnRl",
+            "clZpZXdOb3RpZnkSMQoKYWN0b3JJbmZvcxgBIAMoCzIdLmRjZ2FtZXByb3Rv",
+            "YnVmLlBQZXRBY3RvckluZm8iTQoYUEFjdG9yTnBjRW50ZXJWaWV3Tm90aWZ5",
+            "EjEKCmFjdG9ySW5mb3MYASADKAsyHS5kY2dhbWVwcm90b2J1Zi5QTnBjQWN0",
+            "b3JJbmZvYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Dcgameprotobuf.CommonReflection.Descriptor, global::Dcgameprotobuf.CommonActorReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Dcgameprotobuf.CommonReflection.Descriptor, global::Dcgameprotobuf.CommonActorReflection.Descriptor, global::Dcgameprotobuf.PlayerReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PActorInfo), global::Dcgameprotobuf.PActorInfo.Parser, new[]{ "ActorId", "ActorType", "ActorName", "ActorData", "Pos" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PPlayerActorInfo), global::Dcgameprotobuf.PPlayerActorInfo.Parser, new[]{ "ActorId", "ActorName", "ActorData", "Pos", "Job", "Level" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PPetActorInfo), global::Dcgameprotobuf.PPetActorInfo.Parser, new[]{ "ActorId", "PetCfgId", "ActorData", "Pos" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PNpcActorInfo), global::Dcgameprotobuf.PNpcActorInfo.Parser, new[]{ "ActorId", "NpcCfgId", "ActorData", "Pos" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PChangeLevelNotify), global::Dcgameprotobuf.PChangeLevelNotify.Parser, new[]{ "LevelId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PSetPosNotify), global::Dcgameprotobuf.PSetPosNotify.Parser, new[]{ "ActorId", "Pos" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PActorEnterViewNotify), global::Dcgameprotobuf.PActorEnterViewNotify.Parser, new[]{ "ActorInfos" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PActorPlayerEnterViewNotify), global::Dcgameprotobuf.PActorPlayerEnterViewNotify.Parser, new[]{ "ActorInfos" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PActorLeaveViewNotify), global::Dcgameprotobuf.PActorLeaveViewNotify.Parser, new[]{ "ActorIds" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PRoleEnterWorldNotify), global::Dcgameprotobuf.PRoleEnterWorldNotify.Parser, new[]{ "PlayerActor" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PRoleEnterWorldNotify), global::Dcgameprotobuf.PRoleEnterWorldNotify.Parser, new[]{ "PlayerActor" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PActorPetEnterViewNotify), global::Dcgameprotobuf.PActorPetEnterViewNotify.Parser, new[]{ "ActorInfos" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PActorNpcEnterViewNotify), global::Dcgameprotobuf.PActorNpcEnterViewNotify.Parser, new[]{ "ActorInfos" }, null, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
-  public sealed partial class PActorInfo : pb::IMessage<PActorInfo> {
-    private static readonly pb::MessageParser<PActorInfo> _parser = new pb::MessageParser<PActorInfo>(() => new PActorInfo());
+  public sealed partial class PPlayerActorInfo : pb::IMessage<PPlayerActorInfo> {
+    private static readonly pb::MessageParser<PPlayerActorInfo> _parser = new pb::MessageParser<PPlayerActorInfo>(() => new PPlayerActorInfo());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<PActorInfo> Parser { get { return _parser; } }
+    public static pb::MessageParser<PPlayerActorInfo> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -69,25 +84,26 @@ namespace Dcgameprotobuf {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public PActorInfo() {
+    public PPlayerActorInfo() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public PActorInfo(PActorInfo other) : this() {
+    public PPlayerActorInfo(PPlayerActorInfo other) : this() {
       actorId_ = other.actorId_;
-      actorType_ = other.actorType_;
       actorName_ = other.actorName_;
       actorData_ = other.actorData_ != null ? other.actorData_.Clone() : null;
       pos_ = other.pos_ != null ? other.pos_.Clone() : null;
+      job_ = other.job_;
+      level_ = other.level_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public PActorInfo Clone() {
-      return new PActorInfo(this);
+    public PPlayerActorInfo Clone() {
+      return new PPlayerActorInfo(this);
     }
 
     /// <summary>Field number for the "actorId" field.</summary>
@@ -101,19 +117,8 @@ namespace Dcgameprotobuf {
       }
     }
 
-    /// <summary>Field number for the "actorType" field.</summary>
-    public const int ActorTypeFieldNumber = 2;
-    private global::Dcgameprotobuf.PActorType actorType_ = global::Dcgameprotobuf.PActorType.Player;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Dcgameprotobuf.PActorType ActorType {
-      get { return actorType_; }
-      set {
-        actorType_ = value;
-      }
-    }
-
     /// <summary>Field number for the "actorName" field.</summary>
-    public const int ActorNameFieldNumber = 3;
+    public const int ActorNameFieldNumber = 2;
     private string actorName_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ActorName {
@@ -124,7 +129,7 @@ namespace Dcgameprotobuf {
     }
 
     /// <summary>Field number for the "actorData" field.</summary>
-    public const int ActorDataFieldNumber = 4;
+    public const int ActorDataFieldNumber = 3;
     private global::Dcgameprotobuf.PActorData actorData_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Dcgameprotobuf.PActorData ActorData {
@@ -135,7 +140,286 @@ namespace Dcgameprotobuf {
     }
 
     /// <summary>Field number for the "pos" field.</summary>
-    public const int PosFieldNumber = 5;
+    public const int PosFieldNumber = 4;
+    private global::Dcgameprotobuf.PVector3Int pos_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Dcgameprotobuf.PVector3Int Pos {
+      get { return pos_; }
+      set {
+        pos_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "job" field.</summary>
+    public const int JobFieldNumber = 5;
+    private global::Dcgameprotobuf.PJobType job_ = global::Dcgameprotobuf.PJobType.Saber;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Dcgameprotobuf.PJobType Job {
+      get { return job_; }
+      set {
+        job_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "level" field.</summary>
+    public const int LevelFieldNumber = 6;
+    private int level_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Level {
+      get { return level_; }
+      set {
+        level_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as PPlayerActorInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(PPlayerActorInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ActorId != other.ActorId) return false;
+      if (ActorName != other.ActorName) return false;
+      if (!object.Equals(ActorData, other.ActorData)) return false;
+      if (!object.Equals(Pos, other.Pos)) return false;
+      if (Job != other.Job) return false;
+      if (Level != other.Level) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ActorId != 0) hash ^= ActorId.GetHashCode();
+      if (ActorName.Length != 0) hash ^= ActorName.GetHashCode();
+      if (actorData_ != null) hash ^= ActorData.GetHashCode();
+      if (pos_ != null) hash ^= Pos.GetHashCode();
+      if (Job != global::Dcgameprotobuf.PJobType.Saber) hash ^= Job.GetHashCode();
+      if (Level != 0) hash ^= Level.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ActorId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(ActorId);
+      }
+      if (ActorName.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(ActorName);
+      }
+      if (actorData_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ActorData);
+      }
+      if (pos_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Pos);
+      }
+      if (Job != global::Dcgameprotobuf.PJobType.Saber) {
+        output.WriteRawTag(40);
+        output.WriteEnum((int) Job);
+      }
+      if (Level != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(Level);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (ActorId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ActorId);
+      }
+      if (ActorName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ActorName);
+      }
+      if (actorData_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ActorData);
+      }
+      if (pos_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Pos);
+      }
+      if (Job != global::Dcgameprotobuf.PJobType.Saber) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Job);
+      }
+      if (Level != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(PPlayerActorInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ActorId != 0) {
+        ActorId = other.ActorId;
+      }
+      if (other.ActorName.Length != 0) {
+        ActorName = other.ActorName;
+      }
+      if (other.actorData_ != null) {
+        if (actorData_ == null) {
+          ActorData = new global::Dcgameprotobuf.PActorData();
+        }
+        ActorData.MergeFrom(other.ActorData);
+      }
+      if (other.pos_ != null) {
+        if (pos_ == null) {
+          Pos = new global::Dcgameprotobuf.PVector3Int();
+        }
+        Pos.MergeFrom(other.Pos);
+      }
+      if (other.Job != global::Dcgameprotobuf.PJobType.Saber) {
+        Job = other.Job;
+      }
+      if (other.Level != 0) {
+        Level = other.Level;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            ActorId = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            ActorName = input.ReadString();
+            break;
+          }
+          case 26: {
+            if (actorData_ == null) {
+              ActorData = new global::Dcgameprotobuf.PActorData();
+            }
+            input.ReadMessage(ActorData);
+            break;
+          }
+          case 34: {
+            if (pos_ == null) {
+              Pos = new global::Dcgameprotobuf.PVector3Int();
+            }
+            input.ReadMessage(Pos);
+            break;
+          }
+          case 40: {
+            Job = (global::Dcgameprotobuf.PJobType) input.ReadEnum();
+            break;
+          }
+          case 48: {
+            Level = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class PPetActorInfo : pb::IMessage<PPetActorInfo> {
+    private static readonly pb::MessageParser<PPetActorInfo> _parser = new pb::MessageParser<PPetActorInfo>(() => new PPetActorInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<PPetActorInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PPetActorInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PPetActorInfo(PPetActorInfo other) : this() {
+      actorId_ = other.actorId_;
+      petCfgId_ = other.petCfgId_;
+      actorData_ = other.actorData_ != null ? other.actorData_.Clone() : null;
+      pos_ = other.pos_ != null ? other.pos_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PPetActorInfo Clone() {
+      return new PPetActorInfo(this);
+    }
+
+    /// <summary>Field number for the "actorId" field.</summary>
+    public const int ActorIdFieldNumber = 1;
+    private int actorId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ActorId {
+      get { return actorId_; }
+      set {
+        actorId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "petCfgId" field.</summary>
+    public const int PetCfgIdFieldNumber = 2;
+    private int petCfgId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int PetCfgId {
+      get { return petCfgId_; }
+      set {
+        petCfgId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "actorData" field.</summary>
+    public const int ActorDataFieldNumber = 3;
+    private global::Dcgameprotobuf.PActorData actorData_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Dcgameprotobuf.PActorData ActorData {
+      get { return actorData_; }
+      set {
+        actorData_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "pos" field.</summary>
+    public const int PosFieldNumber = 4;
     private global::Dcgameprotobuf.PVector3Int pos_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Dcgameprotobuf.PVector3Int Pos {
@@ -147,11 +431,11 @@ namespace Dcgameprotobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as PActorInfo);
+      return Equals(other as PPetActorInfo);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(PActorInfo other) {
+    public bool Equals(PPetActorInfo other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -159,8 +443,7 @@ namespace Dcgameprotobuf {
         return true;
       }
       if (ActorId != other.ActorId) return false;
-      if (ActorType != other.ActorType) return false;
-      if (ActorName != other.ActorName) return false;
+      if (PetCfgId != other.PetCfgId) return false;
       if (!object.Equals(ActorData, other.ActorData)) return false;
       if (!object.Equals(Pos, other.Pos)) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -170,8 +453,7 @@ namespace Dcgameprotobuf {
     public override int GetHashCode() {
       int hash = 1;
       if (ActorId != 0) hash ^= ActorId.GetHashCode();
-      if (ActorType != global::Dcgameprotobuf.PActorType.Player) hash ^= ActorType.GetHashCode();
-      if (ActorName.Length != 0) hash ^= ActorName.GetHashCode();
+      if (PetCfgId != 0) hash ^= PetCfgId.GetHashCode();
       if (actorData_ != null) hash ^= ActorData.GetHashCode();
       if (pos_ != null) hash ^= Pos.GetHashCode();
       if (_unknownFields != null) {
@@ -191,20 +473,16 @@ namespace Dcgameprotobuf {
         output.WriteRawTag(8);
         output.WriteInt32(ActorId);
       }
-      if (ActorType != global::Dcgameprotobuf.PActorType.Player) {
+      if (PetCfgId != 0) {
         output.WriteRawTag(16);
-        output.WriteEnum((int) ActorType);
-      }
-      if (ActorName.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(ActorName);
+        output.WriteInt32(PetCfgId);
       }
       if (actorData_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(26);
         output.WriteMessage(ActorData);
       }
       if (pos_ != null) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(34);
         output.WriteMessage(Pos);
       }
       if (_unknownFields != null) {
@@ -218,11 +496,8 @@ namespace Dcgameprotobuf {
       if (ActorId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ActorId);
       }
-      if (ActorType != global::Dcgameprotobuf.PActorType.Player) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ActorType);
-      }
-      if (ActorName.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(ActorName);
+      if (PetCfgId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PetCfgId);
       }
       if (actorData_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(ActorData);
@@ -237,18 +512,15 @@ namespace Dcgameprotobuf {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(PActorInfo other) {
+    public void MergeFrom(PPetActorInfo other) {
       if (other == null) {
         return;
       }
       if (other.ActorId != 0) {
         ActorId = other.ActorId;
       }
-      if (other.ActorType != global::Dcgameprotobuf.PActorType.Player) {
-        ActorType = other.ActorType;
-      }
-      if (other.ActorName.Length != 0) {
-        ActorName = other.ActorName;
+      if (other.PetCfgId != 0) {
+        PetCfgId = other.PetCfgId;
       }
       if (other.actorData_ != null) {
         if (actorData_ == null) {
@@ -278,21 +550,242 @@ namespace Dcgameprotobuf {
             break;
           }
           case 16: {
-            ActorType = (global::Dcgameprotobuf.PActorType) input.ReadEnum();
+            PetCfgId = input.ReadInt32();
             break;
           }
           case 26: {
-            ActorName = input.ReadString();
-            break;
-          }
-          case 34: {
             if (actorData_ == null) {
               ActorData = new global::Dcgameprotobuf.PActorData();
             }
             input.ReadMessage(ActorData);
             break;
           }
-          case 42: {
+          case 34: {
+            if (pos_ == null) {
+              Pos = new global::Dcgameprotobuf.PVector3Int();
+            }
+            input.ReadMessage(Pos);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class PNpcActorInfo : pb::IMessage<PNpcActorInfo> {
+    private static readonly pb::MessageParser<PNpcActorInfo> _parser = new pb::MessageParser<PNpcActorInfo>(() => new PNpcActorInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<PNpcActorInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PNpcActorInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PNpcActorInfo(PNpcActorInfo other) : this() {
+      actorId_ = other.actorId_;
+      npcCfgId_ = other.npcCfgId_;
+      actorData_ = other.actorData_ != null ? other.actorData_.Clone() : null;
+      pos_ = other.pos_ != null ? other.pos_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PNpcActorInfo Clone() {
+      return new PNpcActorInfo(this);
+    }
+
+    /// <summary>Field number for the "actorId" field.</summary>
+    public const int ActorIdFieldNumber = 1;
+    private int actorId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ActorId {
+      get { return actorId_; }
+      set {
+        actorId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "npcCfgId" field.</summary>
+    public const int NpcCfgIdFieldNumber = 2;
+    private int npcCfgId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int NpcCfgId {
+      get { return npcCfgId_; }
+      set {
+        npcCfgId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "actorData" field.</summary>
+    public const int ActorDataFieldNumber = 3;
+    private global::Dcgameprotobuf.PActorData actorData_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Dcgameprotobuf.PActorData ActorData {
+      get { return actorData_; }
+      set {
+        actorData_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "pos" field.</summary>
+    public const int PosFieldNumber = 4;
+    private global::Dcgameprotobuf.PVector3Int pos_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Dcgameprotobuf.PVector3Int Pos {
+      get { return pos_; }
+      set {
+        pos_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as PNpcActorInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(PNpcActorInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ActorId != other.ActorId) return false;
+      if (NpcCfgId != other.NpcCfgId) return false;
+      if (!object.Equals(ActorData, other.ActorData)) return false;
+      if (!object.Equals(Pos, other.Pos)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ActorId != 0) hash ^= ActorId.GetHashCode();
+      if (NpcCfgId != 0) hash ^= NpcCfgId.GetHashCode();
+      if (actorData_ != null) hash ^= ActorData.GetHashCode();
+      if (pos_ != null) hash ^= Pos.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ActorId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(ActorId);
+      }
+      if (NpcCfgId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(NpcCfgId);
+      }
+      if (actorData_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ActorData);
+      }
+      if (pos_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Pos);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (ActorId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ActorId);
+      }
+      if (NpcCfgId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(NpcCfgId);
+      }
+      if (actorData_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ActorData);
+      }
+      if (pos_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Pos);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(PNpcActorInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ActorId != 0) {
+        ActorId = other.ActorId;
+      }
+      if (other.NpcCfgId != 0) {
+        NpcCfgId = other.NpcCfgId;
+      }
+      if (other.actorData_ != null) {
+        if (actorData_ == null) {
+          ActorData = new global::Dcgameprotobuf.PActorData();
+        }
+        ActorData.MergeFrom(other.ActorData);
+      }
+      if (other.pos_ != null) {
+        if (pos_ == null) {
+          Pos = new global::Dcgameprotobuf.PVector3Int();
+        }
+        Pos.MergeFrom(other.Pos);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            ActorId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            NpcCfgId = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            if (actorData_ == null) {
+              ActorData = new global::Dcgameprotobuf.PActorData();
+            }
+            input.ReadMessage(ActorData);
+            break;
+          }
+          case 34: {
             if (pos_ == null) {
               Pos = new global::Dcgameprotobuf.PVector3Int();
             }
@@ -317,7 +810,7 @@ namespace Dcgameprotobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -450,7 +943,7 @@ namespace Dcgameprotobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -606,18 +1099,18 @@ namespace Dcgameprotobuf {
   }
 
   /// <summary>
-  ///actor进入视野
+  ///player进入视野
   ///1020003
   /// </summary>
-  public sealed partial class PActorEnterViewNotify : pb::IMessage<PActorEnterViewNotify> {
-    private static readonly pb::MessageParser<PActorEnterViewNotify> _parser = new pb::MessageParser<PActorEnterViewNotify>(() => new PActorEnterViewNotify());
+  public sealed partial class PActorPlayerEnterViewNotify : pb::IMessage<PActorPlayerEnterViewNotify> {
+    private static readonly pb::MessageParser<PActorPlayerEnterViewNotify> _parser = new pb::MessageParser<PActorPlayerEnterViewNotify>(() => new PActorPlayerEnterViewNotify());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<PActorEnterViewNotify> Parser { get { return _parser; } }
+    public static pb::MessageParser<PActorPlayerEnterViewNotify> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -626,40 +1119,40 @@ namespace Dcgameprotobuf {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public PActorEnterViewNotify() {
+    public PActorPlayerEnterViewNotify() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public PActorEnterViewNotify(PActorEnterViewNotify other) : this() {
+    public PActorPlayerEnterViewNotify(PActorPlayerEnterViewNotify other) : this() {
       actorInfos_ = other.actorInfos_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public PActorEnterViewNotify Clone() {
-      return new PActorEnterViewNotify(this);
+    public PActorPlayerEnterViewNotify Clone() {
+      return new PActorPlayerEnterViewNotify(this);
     }
 
     /// <summary>Field number for the "actorInfos" field.</summary>
     public const int ActorInfosFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Dcgameprotobuf.PActorInfo> _repeated_actorInfos_codec
-        = pb::FieldCodec.ForMessage(10, global::Dcgameprotobuf.PActorInfo.Parser);
-    private readonly pbc::RepeatedField<global::Dcgameprotobuf.PActorInfo> actorInfos_ = new pbc::RepeatedField<global::Dcgameprotobuf.PActorInfo>();
+    private static readonly pb::FieldCodec<global::Dcgameprotobuf.PPlayerActorInfo> _repeated_actorInfos_codec
+        = pb::FieldCodec.ForMessage(10, global::Dcgameprotobuf.PPlayerActorInfo.Parser);
+    private readonly pbc::RepeatedField<global::Dcgameprotobuf.PPlayerActorInfo> actorInfos_ = new pbc::RepeatedField<global::Dcgameprotobuf.PPlayerActorInfo>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Dcgameprotobuf.PActorInfo> ActorInfos {
+    public pbc::RepeatedField<global::Dcgameprotobuf.PPlayerActorInfo> ActorInfos {
       get { return actorInfos_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as PActorEnterViewNotify);
+      return Equals(other as PActorPlayerEnterViewNotify);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(PActorEnterViewNotify other) {
+    public bool Equals(PActorPlayerEnterViewNotify other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -704,7 +1197,7 @@ namespace Dcgameprotobuf {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(PActorEnterViewNotify other) {
+    public void MergeFrom(PActorPlayerEnterViewNotify other) {
       if (other == null) {
         return;
       }
@@ -731,7 +1224,7 @@ namespace Dcgameprotobuf {
   }
 
   /// <summary>
-  ///actor离开视野
+  ///actor离开视野，包括player、npc、pet
   ///1020004
   /// </summary>
   public sealed partial class PActorLeaveViewNotify : pb::IMessage<PActorLeaveViewNotify> {
@@ -742,7 +1235,7 @@ namespace Dcgameprotobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -868,7 +1361,7 @@ namespace Dcgameprotobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -896,9 +1389,9 @@ namespace Dcgameprotobuf {
 
     /// <summary>Field number for the "playerActor" field.</summary>
     public const int PlayerActorFieldNumber = 1;
-    private global::Dcgameprotobuf.PActorInfo playerActor_;
+    private global::Dcgameprotobuf.PPlayerActorInfo playerActor_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Dcgameprotobuf.PActorInfo PlayerActor {
+    public global::Dcgameprotobuf.PPlayerActorInfo PlayerActor {
       get { return playerActor_; }
       set {
         playerActor_ = value;
@@ -967,7 +1460,7 @@ namespace Dcgameprotobuf {
       }
       if (other.playerActor_ != null) {
         if (playerActor_ == null) {
-          PlayerActor = new global::Dcgameprotobuf.PActorInfo();
+          PlayerActor = new global::Dcgameprotobuf.PPlayerActorInfo();
         }
         PlayerActor.MergeFrom(other.PlayerActor);
       }
@@ -984,9 +1477,259 @@ namespace Dcgameprotobuf {
             break;
           case 10: {
             if (playerActor_ == null) {
-              PlayerActor = new global::Dcgameprotobuf.PActorInfo();
+              PlayerActor = new global::Dcgameprotobuf.PPlayerActorInfo();
             }
             input.ReadMessage(PlayerActor);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///pet进入视野
+  ///1020006
+  /// </summary>
+  public sealed partial class PActorPetEnterViewNotify : pb::IMessage<PActorPetEnterViewNotify> {
+    private static readonly pb::MessageParser<PActorPetEnterViewNotify> _parser = new pb::MessageParser<PActorPetEnterViewNotify>(() => new PActorPetEnterViewNotify());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<PActorPetEnterViewNotify> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PActorPetEnterViewNotify() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PActorPetEnterViewNotify(PActorPetEnterViewNotify other) : this() {
+      actorInfos_ = other.actorInfos_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PActorPetEnterViewNotify Clone() {
+      return new PActorPetEnterViewNotify(this);
+    }
+
+    /// <summary>Field number for the "actorInfos" field.</summary>
+    public const int ActorInfosFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Dcgameprotobuf.PPetActorInfo> _repeated_actorInfos_codec
+        = pb::FieldCodec.ForMessage(10, global::Dcgameprotobuf.PPetActorInfo.Parser);
+    private readonly pbc::RepeatedField<global::Dcgameprotobuf.PPetActorInfo> actorInfos_ = new pbc::RepeatedField<global::Dcgameprotobuf.PPetActorInfo>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Dcgameprotobuf.PPetActorInfo> ActorInfos {
+      get { return actorInfos_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as PActorPetEnterViewNotify);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(PActorPetEnterViewNotify other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!actorInfos_.Equals(other.actorInfos_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= actorInfos_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      actorInfos_.WriteTo(output, _repeated_actorInfos_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += actorInfos_.CalculateSize(_repeated_actorInfos_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(PActorPetEnterViewNotify other) {
+      if (other == null) {
+        return;
+      }
+      actorInfos_.Add(other.actorInfos_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            actorInfos_.AddEntriesFrom(input, _repeated_actorInfos_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///npc进入视野
+  ///1020007
+  /// </summary>
+  public sealed partial class PActorNpcEnterViewNotify : pb::IMessage<PActorNpcEnterViewNotify> {
+    private static readonly pb::MessageParser<PActorNpcEnterViewNotify> _parser = new pb::MessageParser<PActorNpcEnterViewNotify>(() => new PActorNpcEnterViewNotify());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<PActorNpcEnterViewNotify> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Dcgameprotobuf.LevelReflection.Descriptor.MessageTypes[9]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PActorNpcEnterViewNotify() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PActorNpcEnterViewNotify(PActorNpcEnterViewNotify other) : this() {
+      actorInfos_ = other.actorInfos_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PActorNpcEnterViewNotify Clone() {
+      return new PActorNpcEnterViewNotify(this);
+    }
+
+    /// <summary>Field number for the "actorInfos" field.</summary>
+    public const int ActorInfosFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Dcgameprotobuf.PNpcActorInfo> _repeated_actorInfos_codec
+        = pb::FieldCodec.ForMessage(10, global::Dcgameprotobuf.PNpcActorInfo.Parser);
+    private readonly pbc::RepeatedField<global::Dcgameprotobuf.PNpcActorInfo> actorInfos_ = new pbc::RepeatedField<global::Dcgameprotobuf.PNpcActorInfo>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Dcgameprotobuf.PNpcActorInfo> ActorInfos {
+      get { return actorInfos_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as PActorNpcEnterViewNotify);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(PActorNpcEnterViewNotify other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!actorInfos_.Equals(other.actorInfos_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= actorInfos_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      actorInfos_.WriteTo(output, _repeated_actorInfos_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += actorInfos_.CalculateSize(_repeated_actorInfos_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(PActorNpcEnterViewNotify other) {
+      if (other == null) {
+        return;
+      }
+      actorInfos_.Add(other.actorInfos_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            actorInfos_.AddEntriesFrom(input, _repeated_actorInfos_codec);
             break;
           }
         }

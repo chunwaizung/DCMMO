@@ -34,10 +34,12 @@ namespace Dcgameprotobuf {
             "ASABKA4yGC5kY2dhbWVwcm90b2J1Zi5QSm9iVHlwZRIMCgRuYW1lGAIgASgJ",
             "IkUKC1BBZGRSb2xlUmVzEg0KBWVycm9yGAEgASgIEicKBGluZm8YAiABKAsy",
             "GS5kY2dhbWVwcm90b2J1Zi5QUm9sZUluZm8qLgoIUEpvYlR5cGUSCQoFU2Fi",
-            "ZXIQABIJCgVNYWdpYxABEgwKCERlZmVuZGVyEAJiBnByb3RvMw=="));
+            "ZXIQABIJCgVNYWdpYxABEgwKCERlZmVuZGVyEAIqOQoKUEVxdWlwVHlwZRIK",
+            "CgZXZWFwb24QABIKCgZIZWxtZXQQARIJCgVDbG90aBACEggKBFNob2UQA2IG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Dcgameprotobuf.PJobType), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Dcgameprotobuf.PJobType), typeof(global::Dcgameprotobuf.PEquipType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PRoleReq), global::Dcgameprotobuf.PRoleReq.Parser, new[]{ "UserToken" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PRoleInfo), global::Dcgameprotobuf.PRoleInfo.Parser, new[]{ "Name", "Job", "Level", "RoleId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Dcgameprotobuf.PRoleRes), global::Dcgameprotobuf.PRoleRes.Parser, new[]{ "ErrorNo", "Infos" }, null, null, null, null),
@@ -55,6 +57,13 @@ namespace Dcgameprotobuf {
     [pbr::OriginalName("Saber")] Saber = 0,
     [pbr::OriginalName("Magic")] Magic = 1,
     [pbr::OriginalName("Defender")] Defender = 2,
+  }
+
+  public enum PEquipType {
+    [pbr::OriginalName("Weapon")] Weapon = 0,
+    [pbr::OriginalName("Helmet")] Helmet = 1,
+    [pbr::OriginalName("Cloth")] Cloth = 2,
+    [pbr::OriginalName("Shoe")] Shoe = 3,
   }
 
   #endregion
