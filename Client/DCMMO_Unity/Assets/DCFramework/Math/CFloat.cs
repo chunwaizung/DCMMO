@@ -45,6 +45,22 @@
         }
         #endregion
 
+        public override bool Equals(object obj)
+        {
+            if (obj is CFloat compareObj)
+            {
+                return this == compareObj || this.mValue == compareObj.mValue;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            //todo d.c 相同的值应该获得相同的hashcode
+            return base.GetHashCode();
+        }
+
         #region implicit
 
         public static implicit operator short(CFloat v)

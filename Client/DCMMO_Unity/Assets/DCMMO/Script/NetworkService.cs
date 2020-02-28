@@ -4,12 +4,14 @@ using System.Net.Sockets;
 using DC.Net;
 using Dcgameprotobuf;
 using Google.Protobuf;
+using UnityEngine;
 
 namespace DC
 {
     struct ReqRecord
     {
-        public int id;
+        public int reqId;
+        public int resId;
         public float reqTime;
     }
 
@@ -19,6 +21,7 @@ namespace DC
     /// </summary>
     public class NetworkService : BaseSys
     {
+        //todo d.c set from config
         public float TimeOutDuration = 10;
 
         Dictionary<int, Delegate> mIdToOnceHandler = new Dictionary<int, Delegate>();
@@ -37,7 +40,7 @@ namespace DC
             mUnityMsgDispatcher.AddListener(OnReceive);
         }
 
-        //todo add timer to check if req is time out
+        //todo d.c add timer to check if req is time out
 
         public override void Awake()
         {
@@ -109,7 +112,14 @@ namespace DC
 
         private void CheckTimeOut()
         {
+            foreach (var reqRecord in mIdToRecord)
+            {
+                var consume = Time.realtimeSinceStartup - reqRecord.Value.reqTime;
+                if (consume > TimeOutDuration)
+                {
 
+                }
+            }
         }
 
         private void Send(int reqId, int resId, byte[] content, Action<int, ProtoPacket> callback)
@@ -133,6 +143,12 @@ namespace DC
                 {
                     AddToHandler(resId, callback, mIdToOnceHandler);
                 }
+
+                var reqRecord = new ReqRecord();
+                reqRecord.reqId = reqId;
+                reqRecord.resId = resId;
+                reqRecord.reqTime = Time.realtimeSinceStartup;
+                mIdToRecord.Add(resId ,reqRecord);
             }
 
             mChannel.Send(SendBuf.From(DCGameProtocol.GetIntBuf(reqId)), SendBuf.From(content));
@@ -172,6 +188,8 @@ namespace DC
             DCLog.LogEx("receive protoId ", id);
             if (id > 0)
             {
+                mIdToRecord.Remove(id);
+
                 //长期监听的先执行
                 Invoke(id, protoPacket, mIdToNormalHandler);
 
