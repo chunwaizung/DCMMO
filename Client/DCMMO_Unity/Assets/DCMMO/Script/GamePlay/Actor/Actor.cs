@@ -15,6 +15,11 @@ namespace DC
         List<BaseActorCmpt> mActorCmpts = new List<BaseActorCmpt>();
 
         public abstract PActorType GetActorType();
+
+        public virtual int GetActorGId()
+        {
+            return 0;
+        }
     }
 
 }

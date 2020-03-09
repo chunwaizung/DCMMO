@@ -1,6 +1,6 @@
 ﻿namespace DC
 {
-    public class BaseDataMgr
+    public class ActorEffectMgr
     {
         
     }

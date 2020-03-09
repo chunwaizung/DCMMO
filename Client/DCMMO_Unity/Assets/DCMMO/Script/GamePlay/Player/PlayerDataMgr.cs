@@ -4,7 +4,7 @@ using Dcgameprotobuf;
 
 namespace DC
 {
-    public class PlayerDataMgr : Singleton<PlayerDataMgr>
+    public class PlayerDataMgr : GameBehaviourSingleton<PlayerDataMgr>
     {
         public string UserName;
 
@@ -31,9 +31,10 @@ namespace DC
             //create role model and load scene
             var notify = (PRoleEnterWorldNotify) proto.ProtoObj;
             var actorInfo = notify.PlayerActor;
-            
-            var actor = SysBox.Instance.ActorSysP.CreateActor(actorInfo);
 
+            var actorSys = SysBoxP.ActorSysP;
+            var actor = actorSys.CreateActor(actorInfo);
+            actorSys.Add(actor.GetActorGId(), actor);
         }
 
         void OnLoginSvrRes(int id, ProtoPacket proto)

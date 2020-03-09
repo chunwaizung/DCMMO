@@ -16,3 +16,8 @@ message PActorData{
     int32 hp = 1;
     int32 mp = 2;
 }
+
+message PActorDisplayData{
+    int32 modelId = 1;
+    int32 weaponId = 2;
+}

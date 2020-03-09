@@ -3,7 +3,7 @@ using Dcgameprotobuf;
 
 namespace DC
 {
-    public class PlayerNet : BaseNet<PlayerNet>
+    public class PlayerNet : GameBehaviourSingleton<PlayerNet>
     {
         public void ReqRoleList(string userToken, Action<int, ProtoPacket> callback)
         {

@@ -27,7 +27,7 @@ message PRoleReq {
     string userToken = 1;
 }
 
-message PRoleInfo{
+message PRoleInfo {
     string name = 1;
     PJobType job = 2;
     int32 level = 3;
